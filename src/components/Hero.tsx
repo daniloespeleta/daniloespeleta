@@ -33,7 +33,9 @@ const Hero = () => {
           </span>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight mb-6">
-            {t("hero.title")}{" "}
+            {t("hero.titleLine1")}
+            <br />
+            {t("hero.titleLine2")}{" "}
             <span className="text-primary">{t("hero.titleHighlight")}</span>
           </h1>
           
