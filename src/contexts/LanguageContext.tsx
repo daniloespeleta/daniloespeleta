@@ -132,7 +132,7 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.info.title": "Let's discuss your growth goals",
     "contact.info.description": "Whether you're looking to increase organic traffic, launch a paid campaign, or need a complete digital marketing strategy, I'm here to help you achieve measurable results.",
     "contact.info.location": "Location",
-    "contact.info.locationValue": "San Francisco, CA (Remote Available)",
+    "contact.info.locationValue": "São Paulo, SP - Brasil",
     "contact.info.email": "Email",
     "contact.info.follow": "Follow Me",
     
@@ -264,7 +264,7 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.info.title": "Vamos discutir suas metas de crescimento",
     "contact.info.description": "Se você está procurando aumentar o tráfego orgânico, lançar uma campanha paga ou precisa de uma estratégia completa de marketing digital, estou aqui para ajudá-lo a alcançar resultados mensuráveis.",
     "contact.info.location": "Localização",
-    "contact.info.locationValue": "São Paulo, SP (Remoto Disponível)",
+    "contact.info.locationValue": "São Paulo, SP - Brasil",
     "contact.info.email": "Email",
     "contact.info.follow": "Siga-me",
     
