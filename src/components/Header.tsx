@@ -40,7 +40,6 @@ const Header = () => {
             <Globe size={18} />
             <span className="uppercase">{language}</span>
           </button>
-          <Button>{t("nav.getInTouch")}</Button>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -59,7 +58,6 @@ const Header = () => {
             {navLinks.map(link => <a key={link.href} href={link.href} className="text-muted-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
                 {link.label}
               </a>)}
-            <Button className="w-full">{t("nav.getInTouch")}</Button>
           </div>
         </nav>}
     </header>;
