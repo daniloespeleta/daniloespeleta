@@ -1,4 +1,4 @@
-import { Mail, Linkedin, Twitter, MapPin } from "lucide-react";
+import { Mail, Linkedin, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,9 +9,7 @@ const Contact = () => {
   const { t } = useLanguage();
 
   const socialLinks = [
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/danilo-espeleta/", label: "LinkedIn" },
   ];
 
   return (
@@ -33,43 +31,60 @@ const Contact = () => {
           {/* Contact Form */}
           <Card className="bg-card border-border">
             <CardContent className="p-8">
-              <form className="space-y-6">
+              <form 
+                className="space-y-6"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.currentTarget);
+                  const firstName = formData.get('firstName') as string;
+                  const lastName = formData.get('lastName') as string;
+                  const email = formData.get('email') as string;
+                  const company = formData.get('company') as string;
+                  const message = formData.get('message') as string;
+                  
+                  const subject = encodeURIComponent(`Contact from ${firstName} ${lastName}`);
+                  const body = encodeURIComponent(`Name: ${firstName} ${lastName}\nEmail: ${email}\nCompany: ${company}\n\nMessage:\n${message}`);
+                  window.location.href = `mailto:daniloespeleta@gmail.com?subject=${subject}&body=${body}`;
+                }}
+              >
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       {t("contact.form.firstName")}
                     </label>
-                    <Input placeholder="John" />
+                    <Input name="firstName" placeholder="John" required />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       {t("contact.form.lastName")}
                     </label>
-                    <Input placeholder="Doe" />
+                    <Input name="lastName" placeholder="Doe" required />
                   </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
                     {t("contact.form.email")}
                   </label>
-                  <Input type="email" placeholder="john@example.com" />
+                  <Input name="email" type="email" placeholder="john@example.com" required />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
                     {t("contact.form.company")}
                   </label>
-                  <Input placeholder={t("contact.form.companyPlaceholder")} />
+                  <Input name="company" placeholder={t("contact.form.companyPlaceholder")} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
                     {t("contact.form.message")}
                   </label>
                   <Textarea
+                    name="message"
                     placeholder={t("contact.form.messagePlaceholder")}
                     className="min-h-[120px]"
+                    required
                   />
                 </div>
-                <Button className="w-full" size="lg">
+                <Button type="submit" className="w-full" size="lg">
                   {t("contact.form.submit")}
                 </Button>
               </form>
@@ -104,8 +119,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground">{t("contact.info.email")}</h4>
-                  <a href="mailto:hello@example.com" className="text-primary hover:underline">
-                    hello@example.com
+                  <a href="mailto:daniloespeleta@gmail.com" className="text-primary hover:underline">
+                    daniloespeleta@gmail.com
                   </a>
                 </div>
               </div>
