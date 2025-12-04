@@ -3,8 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
+  const { t } = useLanguage();
+
   const socialLinks = [
     { icon: Linkedin, href: "#", label: "LinkedIn" },
     { icon: Twitter, href: "#", label: "Twitter" },
@@ -16,13 +19,13 @@ const Contact = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-            Get in Touch
+            {t("contact.badge")}
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-            Let's Work Together
+            {t("contact.title")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Ready to take your digital marketing to the next level? I'd love to hear about your project.
+            {t("contact.description")}
           </p>
         </div>
 
@@ -34,40 +37,40 @@ const Contact = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
-                      First Name
+                      {t("contact.form.firstName")}
                     </label>
                     <Input placeholder="John" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
-                      Last Name
+                      {t("contact.form.lastName")}
                     </label>
                     <Input placeholder="Doe" />
                   </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
-                    Email
+                    {t("contact.form.email")}
                   </label>
                   <Input type="email" placeholder="john@example.com" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
-                    Company
+                    {t("contact.form.company")}
                   </label>
-                  <Input placeholder="Your company name" />
+                  <Input placeholder={t("contact.form.companyPlaceholder")} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
-                    Message
+                    {t("contact.form.message")}
                   </label>
                   <Textarea
-                    placeholder="Tell me about your project..."
+                    placeholder={t("contact.form.messagePlaceholder")}
                     className="min-h-[120px]"
                   />
                 </div>
                 <Button className="w-full" size="lg">
-                  Send Message
+                  {t("contact.form.submit")}
                 </Button>
               </form>
             </CardContent>
@@ -78,12 +81,10 @@ const Contact = () => {
             <div className="space-y-8">
               <div>
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  Let's discuss your growth goals
+                  {t("contact.info.title")}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Whether you're looking to increase organic traffic, launch a paid campaign, 
-                  or need a complete digital marketing strategy, I'm here to help you achieve 
-                  measurable results.
+                  {t("contact.info.description")}
                 </p>
               </div>
 
@@ -92,8 +93,8 @@ const Contact = () => {
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground">Location</h4>
-                  <p className="text-muted-foreground">San Francisco, CA (Remote Available)</p>
+                  <h4 className="font-semibold text-foreground">{t("contact.info.location")}</h4>
+                  <p className="text-muted-foreground">{t("contact.info.locationValue")}</p>
                 </div>
               </div>
 
@@ -102,7 +103,7 @@ const Contact = () => {
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground">Email</h4>
+                  <h4 className="font-semibold text-foreground">{t("contact.info.email")}</h4>
                   <a href="mailto:hello@example.com" className="text-primary hover:underline">
                     hello@example.com
                   </a>
@@ -110,7 +111,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <h4 className="font-semibold text-foreground mb-4">Follow Me</h4>
+                <h4 className="font-semibold text-foreground mb-4">{t("contact.info.follow")}</h4>
                 <div className="flex gap-4">
                   {socialLinks.map((social) => (
                     <a
