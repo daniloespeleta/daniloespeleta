@@ -9,9 +9,10 @@ interface ProjectCardProps {
   metrics: { label: string; value: string }[];
   tags: string[];
   image: string;
+  link?: string;
 }
 
-const ProjectCard = ({ title, category, description, metrics, tags, image }: ProjectCardProps) => {
+const ProjectCard = ({ title, category, description, metrics, tags, image, link }: ProjectCardProps) => {
   return (
     <Card className="group overflow-hidden bg-card hover:shadow-xl transition-all duration-300 border-border">
       <div className="relative overflow-hidden">
@@ -59,10 +60,12 @@ const ProjectCard = ({ title, category, description, metrics, tags, image }: Pro
         </div>
         
         <a
-          href="#"
+          href={link || "#"}
+          target={link ? "_blank" : undefined}
+          rel={link ? "noopener noreferrer" : undefined}
           className="inline-flex items-center text-primary font-medium hover:underline"
         >
-          View Case Study
+          View Project
           <ExternalLink className="ml-2 h-4 w-4" />
         </a>
       </CardContent>
