@@ -23,7 +23,7 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img alt="Digital marketing analytics visualization" className="w-full h-full object-cover" src="/lovable-uploads/ca8e750d-3087-4fe5-99f3-d4671abfb1ee.png" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/30" />
       </div>
 
       <div className="container mx-auto px-6 py-20 relative z-10">
