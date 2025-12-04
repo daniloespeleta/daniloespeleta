@@ -1,4 +1,4 @@
-import { Mail, Linkedin, MapPin } from "lucide-react";
+import { Mail, Linkedin, MapPin, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -121,6 +121,23 @@ const Contact = () => {
                   <h4 className="font-semibold text-foreground">{t("contact.info.email")}</h4>
                   <a href="mailto:daniloespeleta@gmail.com" className="text-primary hover:underline">
                     daniloespeleta@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center shrink-0">
+                  <MessageCircle className="h-6 w-6 text-green-500" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">WhatsApp</h4>
+                  <a 
+                    href="https://wa.me/5511921457667" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-green-500 hover:underline"
+                  >
+                    +55 11 92145-7667
                   </a>
                 </div>
               </div>
