@@ -3,6 +3,7 @@ import ProjectCard from "./ProjectCard";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import fenixImage from "@/assets/fenix-educacao-project.jpg";
+import lbvImage from "@/assets/lbv-branding-project.jpg";
 
 const Projects = () => {
   const { t } = useLanguage();
@@ -58,6 +59,17 @@ const Projects = () => {
       ],
       tags: ["CRM", "Email Automation", "Power BI"],
       image: fenixImage,
+    },
+    {
+      title: t("project.lbv.title"),
+      category: t("project.lbv.category"),
+      description: t("project.lbv.description"),
+      metrics: [
+        { label: t("project.lbv.metric1"), value: "+45%" },
+        { label: t("project.lbv.metric2"), value: "-25%" },
+      ],
+      tags: ["Branding", "360º Campaigns", "Stakeholders"],
+      image: lbvImage,
     },
     {
       title: t("project.ecommerce.title"),
