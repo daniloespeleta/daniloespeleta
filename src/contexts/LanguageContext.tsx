@@ -19,9 +19,9 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero
     "hero.badge": "Digital Marketing Specialist",
-    "hero.titleLine1": "Making messy CRMs",
-    "hero.titleLine2": "feel smart –",
-    "hero.titleHighlight": "the art of human behaviour.",
+    "hero.titleLine1": "CRM is not a spreadsheet.",
+    "hero.titleLine2": "",
+    "hero.titleHighlight": "It's empathy.",
     "hero.description": "I help businesses scale their online presence through data-driven SEO, social media campaigns, and performance marketing strategies that deliver measurable results.",
     "hero.viewWork": "View My Work",
     "hero.downloadResume": "Download Resume",
@@ -129,9 +129,9 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero
     "hero.badge": "Especialista em Marketing Digital",
-    "hero.titleLine1": "Fazendo CRMs bagunçados",
-    "hero.titleLine2": "parecerem inteligentes –",
-    "hero.titleHighlight": "a arte do comportamento humano.",
+    "hero.titleLine1": "CRM não é planilha.",
+    "hero.titleLine2": "",
+    "hero.titleHighlight": "É empatia.",
     "hero.description": "Ajudo empresas a escalar sua presença online através de SEO orientado por dados, campanhas de mídia social e estratégias de marketing de performance que entregam resultados mensuráveis.",
     "hero.viewWork": "Ver Meu Trabalho",
     "hero.downloadResume": "Baixar Currículo",
