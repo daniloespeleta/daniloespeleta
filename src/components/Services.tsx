@@ -1,52 +1,55 @@
 import { Search, Share2, Target, Mail, PenTool, BarChart } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-
-const services = [
-  {
-    icon: Search,
-    title: "Search Engine Optimization",
-    description: "Technical SEO audits, keyword strategy, and content optimization to dominate organic search rankings.",
-  },
-  {
-    icon: Target,
-    title: "PPC Advertising",
-    description: "High-performance Google Ads and Meta campaigns with continuous optimization for maximum ROAS.",
-  },
-  {
-    icon: Share2,
-    title: "Social Media Marketing",
-    description: "Strategic content creation and community management across all major social platforms.",
-  },
-  {
-    icon: Mail,
-    title: "Email Marketing",
-    description: "Automated email sequences, newsletter campaigns, and lead nurturing workflows that convert.",
-  },
-  {
-    icon: PenTool,
-    title: "Content Strategy",
-    description: "Data-driven content planning, creation, and distribution to attract and engage your target audience.",
-  },
-  {
-    icon: BarChart,
-    title: "Analytics & Reporting",
-    description: "Custom dashboards and actionable insights to measure ROI and guide strategic decisions.",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Services = () => {
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      icon: Search,
+      title: t("service.seo.title"),
+      description: t("service.seo.description"),
+    },
+    {
+      icon: Target,
+      title: t("service.ppc.title"),
+      description: t("service.ppc.description"),
+    },
+    {
+      icon: Share2,
+      title: t("service.social.title"),
+      description: t("service.social.description"),
+    },
+    {
+      icon: Mail,
+      title: t("service.email.title"),
+      description: t("service.email.description"),
+    },
+    {
+      icon: PenTool,
+      title: t("service.content.title"),
+      description: t("service.content.description"),
+    },
+    {
+      icon: BarChart,
+      title: t("service.analytics.title"),
+      description: t("service.analytics.description"),
+    },
+  ];
+
   return (
     <section id="services" className="py-20 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-            What I Do
+            {t("services.badge")}
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-            Services & Expertise
+            {t("services.title")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Full-spectrum digital marketing services tailored to your business goals and growth targets.
+            {t("services.description")}
           </p>
         </div>
 

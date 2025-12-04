@@ -1,21 +1,23 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const navLinks = [
-    { label: "Projects", href: "#projects" },
-    { label: "Services", href: "#services" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: t("nav.projects"), href: "#projects" },
+    { label: t("nav.services"), href: "#services" },
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.contact"), href: "#contact" },
   ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="/" className="text-2xl font-bold text-foreground">
+        <a href="/home" className="text-2xl font-bold text-foreground">
           <span className="text-primary">Digital</span>Mark
         </a>
 
@@ -23,14 +25,14 @@ const Header = () => {
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
-              key={link.label}
+              key={link.href}
               href={link.href}
               className="text-muted-foreground hover:text-primary transition-colors font-medium"
             >
               {link.label}
             </a>
           ))}
-          <Button>Get in Touch</Button>
+          <Button>{t("nav.getInTouch")}</Button>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -49,7 +51,7 @@ const Header = () => {
           <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <a
-                key={link.label}
+                key={link.href}
                 href={link.href}
                 className="text-muted-foreground hover:text-primary transition-colors font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
@@ -57,7 +59,7 @@ const Header = () => {
                 {link.label}
               </a>
             ))}
-            <Button className="w-full">Get in Touch</Button>
+            <Button className="w-full">{t("nav.getInTouch")}</Button>
           </div>
         </nav>
       )}

@@ -1,21 +1,24 @@
 import { Award, Briefcase, GraduationCap } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const About = () => {
+  const { t } = useLanguage();
+
   const credentials = [
     {
       icon: Award,
-      title: "Google Ads Certified",
-      description: "Search, Display & Video",
+      title: t("about.credential1.title"),
+      description: t("about.credential1.description"),
     },
     {
       icon: GraduationCap,
-      title: "HubSpot Academy",
-      description: "Inbound Marketing Expert",
+      title: t("about.credential2.title"),
+      description: t("about.credential2.description"),
     },
     {
       icon: Briefcase,
-      title: "8+ Years Experience",
-      description: "Agency & In-House",
+      title: t("about.credential3.title"),
+      description: t("about.credential3.description"),
     },
   ];
 
@@ -25,20 +28,16 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-6">
-              About Me
+              {t("about.badge")}
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
-              Passionate About Digital Growth
+              {t("about.title")}
             </h2>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              With over 8 years of experience in digital marketing, I've helped startups 
-              and Fortune 500 companies alike achieve their growth objectives through 
-              strategic, data-driven marketing campaigns.
+              {t("about.paragraph1")}
             </p>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              My approach combines creative storytelling with rigorous analytics, ensuring 
-              every dollar spent delivers measurable results. I believe in transparency, 
-              continuous optimization, and building long-term partnerships.
+              {t("about.paragraph2")}
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -62,8 +61,8 @@ const About = () => {
                   <div className="w-32 h-32 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-6">
                     <span className="text-5xl font-bold text-primary">DM</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Digital Marketer</h3>
-                  <p className="text-muted-foreground">Growth Specialist</p>
+                  <h3 className="text-2xl font-bold text-foreground mb-2">{t("about.role")}</h3>
+                  <p className="text-muted-foreground">{t("about.specialty")}</p>
                 </div>
               </div>
             </div>

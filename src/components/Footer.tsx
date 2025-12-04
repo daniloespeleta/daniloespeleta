@@ -1,4 +1,8 @@
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="py-8 bg-card border-t border-border">
       <div className="container mx-auto px-6">
@@ -7,14 +11,14 @@ const Footer = () => {
             <span className="text-primary">Digital</span>Mark
           </div>
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Digital Marketing Portfolio. All rights reserved.
+            © {new Date().getFullYear()} {t("footer.copyright")}
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
-              Privacy
+              {t("footer.privacy")}
             </a>
             <a href="#" className="text-muted-foreground hover:text-primary text-sm transition-colors">
-              Terms
+              {t("footer.terms")}
             </a>
           </div>
         </div>
