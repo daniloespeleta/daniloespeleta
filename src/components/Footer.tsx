@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-2xl font-bold text-foreground">
-            <span className="text-primary">Digital</span>Mark
+            <span className="text-primary">Danilo</span>Espeleta
           </div>
           <p className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} {t("footer.copyright")}
