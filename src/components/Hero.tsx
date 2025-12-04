@@ -2,25 +2,27 @@ import { ArrowRight, TrendingUp, Users, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import heroBg from "@/assets/hero-bg.jpg";
-
 const Hero = () => {
-  const { t } = useLanguage();
-
-  const stats = [
-    { icon: TrendingUp, value: "250%", label: t("hero.stat.roi") },
-    { icon: Users, value: "50+", label: t("hero.stat.clients") },
-    { icon: BarChart3, value: "1M+", label: t("hero.stat.leads") },
-  ];
-
-  return (
-    <section className="relative min-h-screen flex items-center pt-20">
+  const {
+    t
+  } = useLanguage();
+  const stats = [{
+    icon: TrendingUp,
+    value: "250%",
+    label: t("hero.stat.roi")
+  }, {
+    icon: Users,
+    value: "50+",
+    label: t("hero.stat.clients")
+  }, {
+    icon: BarChart3,
+    value: "1M+",
+    label: t("hero.stat.leads")
+  }];
+  return <section className="relative min-h-screen flex items-center pt-20">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={heroBg}
-          alt="Digital marketing analytics visualization"
-          className="w-full h-full object-cover"
-        />
+        <img alt="Digital marketing analytics visualization" className="w-full h-full object-cover" src="/lovable-uploads/5ee4e5ba-d893-4063-81d3-b19113c5c7f3.jpg" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/60" />
       </div>
 
@@ -51,18 +53,14 @@ const Hero = () => {
 
           {/* Stats */}
           <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center sm:text-left">
+            {stats.map(stat => <div key={stat.label} className="text-center sm:text-left">
                 <stat.icon className="h-6 w-6 text-primary mb-2 mx-auto sm:mx-0" />
                 <div className="text-2xl md:text-3xl font-bold text-foreground">{stat.value}</div>
                 <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
