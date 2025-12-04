@@ -1,11 +1,15 @@
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
+
+  const toggleLanguage = () => {
+    setLanguage(language === "en" ? "pt" : "en");
+  };
 
   const navLinks = [
     { label: t("nav.projects"), href: "#projects" },
@@ -32,6 +36,14 @@ const Header = () => {
               {link.label}
             </a>
           ))}
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-medium"
+            aria-label="Toggle language"
+          >
+            <Globe size={18} />
+            <span className="uppercase">{language}</span>
+          </button>
           <Button>{t("nav.getInTouch")}</Button>
         </nav>
 
@@ -49,6 +61,14 @@ const Header = () => {
       {isMenuOpen && (
         <nav className="md:hidden bg-background border-b border-border">
           <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-medium py-2"
+              aria-label="Toggle language"
+            >
+              <Globe size={18} />
+              <span className="uppercase">{language}</span>
+            </button>
             {navLinks.map((link) => (
               <a
                 key={link.href}
