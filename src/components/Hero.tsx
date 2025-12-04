@@ -38,9 +38,7 @@ const Hero = () => {
             <span className="text-primary">{t("hero.titleHighlight")}</span>
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
-            {t("hero.description")}
-          </p>
+          
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
             <Button size="lg" className="group">
