@@ -70,6 +70,11 @@ const translations: Record<Language, Record<string, string>> = {
     "project.fitness.description": "Orchestrated a multi-channel launch campaign for a fitness app, achieving top 10 Health & Fitness ranking.",
     "project.fitness.metric1": "App Downloads",
     "project.fitness.metric2": "ROAS",
+    "project.fenix.title": "Fênix Educação - CRM & Automation",
+    "project.fenix.category": "Marketing Automation",
+    "project.fenix.description": "Built a robust CRM and automation operation that increased email open rates by 400%, achieving 50%+ engagement. Managed 50K segmented leads with personalized journeys using RD Station, Mautic, Mailchimp, and SendPulse, reducing operational costs by 25%.",
+    "project.fenix.metric1": "Email Open Rate",
+    "project.fenix.metric2": "Enrollments",
     
     // Services
     "services.badge": "What I Do",
@@ -187,6 +192,11 @@ const translations: Record<Language, Record<string, string>> = {
     "project.fitness.description": "Orquestrei uma campanha de lançamento multicanal para um app fitness, alcançando o top 10 na categoria Saúde & Fitness.",
     "project.fitness.metric1": "Downloads do App",
     "project.fitness.metric2": "ROAS",
+    "project.fenix.title": "Fênix Educação - CRM & Automação",
+    "project.fenix.category": "Automação de Marketing",
+    "project.fenix.description": "Estruturei uma operação robusta de CRM e automação que aumentou a taxa de abertura de e-mails em 400%, com engajamento médio superior a 50%. Gerenciei 50 mil leads segmentados com jornadas personalizadas usando RD Station, Mautic, Mailchimp e SendPulse, reduzindo custos operacionais em 25%.",
+    "project.fenix.metric1": "Taxa de Abertura",
+    "project.fenix.metric2": "Matrículas",
     
     // Services
     "services.badge": "O Que Faço",
