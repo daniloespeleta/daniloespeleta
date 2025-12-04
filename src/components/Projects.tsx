@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
+import fenixImage from "@/assets/fenix-educacao-project.jpg";
 
 const Projects = () => {
   const { t } = useLanguage();
@@ -47,6 +48,17 @@ const Projects = () => {
   ];
 
   const marketingProjects = [
+    {
+      title: t("project.fenix.title"),
+      category: t("project.fenix.category"),
+      description: t("project.fenix.description"),
+      metrics: [
+        { label: t("project.fenix.metric1"), value: "+400%" },
+        { label: t("project.fenix.metric2"), value: "+20%" },
+      ],
+      tags: ["CRM", "Email Automation", "Power BI"],
+      image: fenixImage,
+    },
     {
       title: t("project.ecommerce.title"),
       category: t("project.ecommerce.category"),
