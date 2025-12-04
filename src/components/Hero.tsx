@@ -26,8 +26,10 @@ const Hero = () => {
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </a>
               </Button>
-              <Button variant="outline" size="lg">
-                {t("hero.downloadResume")}
+              <Button variant="outline" size="lg" asChild>
+                <a href="/CV_Danilo_Espeleta_ATS.pdf" download>
+                  {t("hero.downloadResume")}
+                </a>
               </Button>
             </div>
           </div>
