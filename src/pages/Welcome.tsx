@@ -14,12 +14,9 @@ const Welcome = () => {
       <div className="text-center max-w-md">
         
         
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">DaniloEspeleta<span className="text-red-500">Danilo</span>Mark
-        </h1>
         
-        <p className="text-muted-foreground mb-8">
-          Select your preferred language / Selecione seu idioma preferido
-        </p>
+        
+        
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" variant="outline" className="min-w-[160px]" onClick={() => handleLanguageSelect("en")}>
