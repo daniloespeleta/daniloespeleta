@@ -75,6 +75,11 @@ const translations: Record<Language, Record<string, string>> = {
     "project.fenix.description": "Built a robust CRM and automation operation that increased email open rates by 400%, achieving 50%+ engagement. Managed 50K segmented leads with personalized journeys using RD Station, Mautic, Mailchimp, and SendPulse, reducing operational costs by 25%.",
     "project.fenix.metric1": "Email Open Rate",
     "project.fenix.metric2": "Enrollments",
+    "project.lbv.title": "LBV - Institutional Marketing & Branding",
+    "project.lbv.category": "Branding & Communications",
+    "project.lbv.description": "Strengthened institutional brand positioning, increasing campaign reach by 45% through innovative 360º strategies. Structured cross-department communication routines, improving delivery predictability by 30% and reducing production costs by 25% through media partnerships.",
+    "project.lbv.metric1": "Campaign Reach",
+    "project.lbv.metric2": "Cost Reduction",
     
     // Services
     "services.badge": "What I Do",
@@ -197,6 +202,11 @@ const translations: Record<Language, Record<string, string>> = {
     "project.fenix.description": "Estruturei uma operação robusta de CRM e automação que aumentou a taxa de abertura de e-mails em 400%, com engajamento médio superior a 50%. Gerenciei 50 mil leads segmentados com jornadas personalizadas usando RD Station, Mautic, Mailchimp e SendPulse, reduzindo custos operacionais em 25%.",
     "project.fenix.metric1": "Taxa de Abertura",
     "project.fenix.metric2": "Matrículas",
+    "project.lbv.title": "LBV - Marketing Institucional & Branding",
+    "project.lbv.category": "Branding & Comunicação",
+    "project.lbv.description": "Fortaleci o posicionamento institucional da marca, aumentando o alcance das campanhas 360º em 45%. Estruturei rotinas de comunicação entre áreas, melhorando a previsibilidade das entregas em 30% e reduzindo custos de produção em 25% através de negociações de contrapartidas de mídia.",
+    "project.lbv.metric1": "Alcance de Campanhas",
+    "project.lbv.metric2": "Redução de Custos",
     
     // Services
     "services.badge": "O Que Faço",
