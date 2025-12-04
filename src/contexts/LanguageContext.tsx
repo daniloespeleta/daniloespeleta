@@ -80,6 +80,11 @@ const translations: Record<Language, Record<string, string>> = {
     "project.lbv.description": "Strengthened institutional brand positioning, increasing campaign reach by 45% through innovative 360º strategies. Structured cross-department communication routines, improving delivery predictability by 30% and reducing production costs by 25% through media partnerships.",
     "project.lbv.metric1": "Campaign Reach",
     "project.lbv.metric2": "Cost Reduction",
+    "project.monchu.title": "Monchu - Events & Experiential Marketing",
+    "project.monchu.category": "Event Production",
+    "project.monchu.description": "Scaled event audiences from 500 to 3,000+ participants over 3 years, increasing social media engagement by 150%. Negotiated sponsorships that boosted indirect revenue by 40% while reducing operational timelines by 25%.",
+    "project.monchu.metric1": "Audience Growth",
+    "project.monchu.metric2": "Engagement",
     
     // Services
     "services.badge": "What I Do",
@@ -207,6 +212,11 @@ const translations: Record<Language, Record<string, string>> = {
     "project.lbv.description": "Fortaleci o posicionamento institucional da marca, aumentando o alcance das campanhas 360º em 45%. Estruturei rotinas de comunicação entre áreas, melhorando a previsibilidade das entregas em 30% e reduzindo custos de produção em 25% através de negociações de contrapartidas de mídia.",
     "project.lbv.metric1": "Alcance de Campanhas",
     "project.lbv.metric2": "Redução de Custos",
+    "project.monchu.title": "Monchu - Eventos & Marketing de Experiência",
+    "project.monchu.category": "Produção de Eventos",
+    "project.monchu.description": "Ampliei a audiência de eventos de 500 para mais de 3.000 participantes em 3 anos, aumentando o engajamento em redes sociais em 150%. Negociei patrocínios que elevaram o faturamento indireto em 40%, reduzindo prazos operacionais em 25%.",
+    "project.monchu.metric1": "Crescimento de Audiência",
+    "project.monchu.metric2": "Engajamento",
     
     // Services
     "services.badge": "O Que Faço",

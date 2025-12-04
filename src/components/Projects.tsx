@@ -4,6 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import fenixImage from "@/assets/fenix-educacao-project.jpg";
 import lbvImage from "@/assets/lbv-branding-project.jpg";
+import monchuImage from "@/assets/monchu-events-project.jpg";
 
 const Projects = () => {
   const { t } = useLanguage();
@@ -70,6 +71,17 @@ const Projects = () => {
       ],
       tags: ["Branding", "360º Campaigns", "Stakeholders"],
       image: lbvImage,
+    },
+    {
+      title: t("project.monchu.title"),
+      category: t("project.monchu.category"),
+      description: t("project.monchu.description"),
+      metrics: [
+        { label: t("project.monchu.metric1"), value: "6x" },
+        { label: t("project.monchu.metric2"), value: "+150%" },
+      ],
+      tags: ["Events", "Social Media", "Sponsorships"],
+      image: monchuImage,
     },
     {
       title: t("project.ecommerce.title"),
