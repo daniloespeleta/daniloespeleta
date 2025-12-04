@@ -83,50 +83,6 @@ const Projects = () => {
       tags: ["Events", "Social Media", "Sponsorships"],
       image: monchuImage,
     },
-    {
-      title: t("project.ecommerce.title"),
-      category: t("project.ecommerce.category"),
-      description: t("project.ecommerce.description"),
-      metrics: [
-        { label: t("project.ecommerce.metric1"), value: "+340%" },
-        { label: t("project.ecommerce.metric2"), value: "+280%" },
-      ],
-      tags: ["Google Ads", "SEO", "Analytics"],
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-    },
-    {
-      title: t("project.saas.title"),
-      category: t("project.saas.category"),
-      description: t("project.saas.description"),
-      metrics: [
-        { label: t("project.saas.metric1"), value: "2,500+" },
-        { label: t("project.saas.metric2"), value: "-65%" },
-      ],
-      tags: ["HubSpot", "LinkedIn", "Email"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-    },
-    {
-      title: t("project.restaurant.title"),
-      category: t("project.restaurant.category"),
-      description: t("project.restaurant.description"),
-      metrics: [
-        { label: t("project.restaurant.metric1"), value: "+450%" },
-        { label: t("project.restaurant.metric2"), value: "125K" },
-      ],
-      tags: ["Instagram", "TikTok", "UGC"],
-      image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&h=400&fit=crop",
-    },
-    {
-      title: t("project.fitness.title"),
-      category: t("project.fitness.category"),
-      description: t("project.fitness.description"),
-      metrics: [
-        { label: t("project.fitness.metric1"), value: "500K+" },
-        { label: t("project.fitness.metric2"), value: "4.2x" },
-      ],
-      tags: ["Meta Ads", "Apple Search", "Influencer"],
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
-    },
   ];
 
   const projects = activeTab === "analytics" ? analyticsProjects : marketingProjects;
