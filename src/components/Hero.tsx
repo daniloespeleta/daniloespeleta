@@ -1,9 +1,10 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-
 const Hero = () => {
-  const { t } = useLanguage();
+  const {
+    t
+  } = useLanguage();
   return <section className="relative min-h-screen flex items-center pt-20 bg-background">
       <div className="container mx-auto px-6 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -37,11 +38,7 @@ const Hero = () => {
           {/* Image Block */}
           <div className="relative hidden lg:block">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <img 
-                alt="Digital marketing analytics visualization" 
-                className="w-full h-auto object-cover" 
-                src="/lovable-uploads/ca8e750d-3087-4fe5-99f3-d4671abfb1ee.png" 
-              />
+              <img alt="Digital marketing analytics visualization" className="w-full h-auto object-cover" src="/lovable-uploads/517fd23d-56a0-4c4b-b214-070e547d91d8.png" />
             </div>
           </div>
         </div>
