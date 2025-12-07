@@ -23,9 +23,9 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-muted/20">
+    <section id="about" className="pt-0 lg:-mt-32 pb-20 bg-muted/20">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center pt-20 lg:pt-40">
           <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-6">
             {t("about.badge")}
           </span>
