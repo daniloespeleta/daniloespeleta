@@ -8,7 +8,7 @@ import monchuImage from "@/assets/monchu-events-project.jpg";
 
 const Projects = () => {
   const { t } = useLanguage();
-  const [activeTab, setActiveTab] = useState<"marketing" | "analytics">("analytics");
+  const [activeTab, setActiveTab] = useState<"marketing" | "analytics">("marketing");
 
   const analyticsProjects = [
     {
@@ -104,18 +104,18 @@ const Projects = () => {
           {/* Filter Tabs */}
           <div className="flex justify-center gap-4">
             <Button
-              variant={activeTab === "analytics" ? "default" : "outline"}
-              onClick={() => setActiveTab("analytics")}
-              className="px-6"
-            >
-              {t("projects.tab.analytics")}
-            </Button>
-            <Button
               variant={activeTab === "marketing" ? "default" : "outline"}
               onClick={() => setActiveTab("marketing")}
               className="px-6"
             >
               {t("projects.tab.marketing")}
+            </Button>
+            <Button
+              variant={activeTab === "analytics" ? "default" : "outline"}
+              onClick={() => setActiveTab("analytics")}
+              className="px-6"
+            >
+              {t("projects.tab.analytics")}
             </Button>
           </div>
         </div>
