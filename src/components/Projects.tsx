@@ -3,7 +3,7 @@ import ProjectCard from "./ProjectCard";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import fenixImage from "@/assets/fenix-educacao-project.jpg";
-import lbvImage from "@/assets/lbv-branding-project.jpg";
+import lbvImage from "@/assets/lbv-branding-project.png";
 import monchuImage from "@/assets/monchu-events-project.jpg";
 
 const Projects = () => {
