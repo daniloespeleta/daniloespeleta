@@ -5,7 +5,8 @@ const Hero = () => {
   const {
     t
   } = useLanguage();
-  return <section className="relative min-h-screen flex items-center pt-20 bg-background">
+  return (
+    <section className="relative min-h-screen flex items-center pt-20 bg-background">
       <div className="container mx-auto px-6 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -35,14 +36,18 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Image Block */}
-          <div className="relative hidden lg:block">
-            <div className="relative rounded-2xl overflow-hidden">
+          {/* Image Block - positioned to rest on the divider line */}
+          <div className="relative hidden lg:flex lg:items-end lg:justify-center lg:h-full">
+            <div className="relative rounded-2xl overflow-hidden translate-y-20">
               <img alt="Digital marketing analytics visualization" className="w-full h-auto object-cover" src="/lovable-uploads/416684cc-de30-4c4f-a835-25e1836de5b8.png" />
             </div>
           </div>
         </div>
       </div>
-    </section>;
+      
+      {/* Divider line */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-border" />
+    </section>
+  );
 };
 export default Hero;
