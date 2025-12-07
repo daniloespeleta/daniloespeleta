@@ -2,7 +2,7 @@ import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import fenixImage from "@/assets/fenix-educacao-project.jpg";
+import fenixImage from "@/assets/fenix-educacao-project.svg";
 import lbvImage from "@/assets/lbv-branding-project.png";
 import monchuImage from "@/assets/monchu-events-project.jpg";
 
@@ -60,6 +60,7 @@ const Projects = () => {
       ],
       tags: ["CRM", "Email Automation", "Power BI"],
       image: fenixImage,
+      imageContain: true,
     },
     {
       title: t("project.lbv.title"),
