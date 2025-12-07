@@ -10,16 +10,20 @@ interface ProjectCardProps {
   tags: string[];
   image: string;
   link?: string;
+  imageContain?: boolean;
 }
 
-const ProjectCard = ({ title, category, description, metrics, tags, image, link }: ProjectCardProps) => {
+const ProjectCard = ({ title, category, description, metrics, tags, image, link, imageContain }: ProjectCardProps) => {
   return (
     <Card className="group overflow-hidden bg-card hover:shadow-xl transition-all duration-300 border-border">
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden h-56 flex items-center justify-center bg-muted/20">
         <img
           src={image}
           alt={title}
-          className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+          className={imageContain 
+            ? "max-w-[70%] max-h-40 object-contain group-hover:scale-105 transition-transform duration-500"
+            : "w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          }
         />
         <div className="absolute top-4 left-4">
           <Badge variant="secondary" className="bg-primary text-primary-foreground">

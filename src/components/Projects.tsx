@@ -71,6 +71,7 @@ const Projects = () => {
       ],
       tags: ["Branding", "360º Campaigns", "Stakeholders"],
       image: lbvImage,
+      imageContain: true,
     },
     {
       title: t("project.monchu.title"),
