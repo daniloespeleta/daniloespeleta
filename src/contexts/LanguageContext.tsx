@@ -113,7 +113,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Contact
     "contact.badge": "Get in Touch",
-    "contact.title": "Let's Work Together",
+    "contact.title": "Let's Build Something Worthwhile",
     "contact.description": "Ready to take your digital marketing to the next level? I'd love to hear about your project.",
     "contact.form.firstName": "First Name",
     "contact.form.lastName": "Last Name",
