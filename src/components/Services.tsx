@@ -1,4 +1,4 @@
-import { Search, Share2, Target, Mail, PenTool, BarChart } from "lucide-react";
+import { Users, TrendingUp, Building2, CalendarDays, BarChart3, Zap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -7,32 +7,32 @@ const Services = () => {
 
   const services = [
     {
-      icon: Search,
+      icon: Users,
       title: t("service.seo.title"),
       description: t("service.seo.description"),
     },
     {
-      icon: Target,
+      icon: TrendingUp,
       title: t("service.ppc.title"),
       description: t("service.ppc.description"),
     },
     {
-      icon: Share2,
+      icon: Building2,
       title: t("service.social.title"),
       description: t("service.social.description"),
     },
     {
-      icon: Mail,
+      icon: CalendarDays,
       title: t("service.email.title"),
       description: t("service.email.description"),
     },
     {
-      icon: PenTool,
+      icon: BarChart3,
       title: t("service.content.title"),
       description: t("service.content.description"),
     },
     {
-      icon: BarChart,
+      icon: Zap,
       title: t("service.analytics.title"),
       description: t("service.analytics.description"),
     },
