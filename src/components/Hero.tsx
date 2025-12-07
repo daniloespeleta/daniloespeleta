@@ -38,7 +38,7 @@ const Hero = () => {
           {/* Image Block */}
           <div className="relative hidden lg:block">
             <div className="relative overflow-hidden">
-              <img alt="Digital marketing analytics visualization" className="w-full h-auto object-cover" src="/lovable-uploads/517fd23d-56a0-4c4b-b214-070e547d91d8.png" />
+              <img alt="Digital marketing analytics visualization" className="w-full h-auto object-cover" src="/lovable-uploads/a7747dd9-bd85-4c2a-8d21-f3fec9542058.png" />
             </div>
           </div>
         </div>
