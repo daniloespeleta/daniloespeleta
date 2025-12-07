@@ -1,4 +1,4 @@
-import { Users, TrendingUp, Building2, BarChart3, Zap } from "lucide-react";
+import { Users, TrendingUp, Building2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -20,16 +20,6 @@ const Services = () => {
       icon: Building2,
       title: t("service.social.title"),
       description: t("service.social.description"),
-    },
-    {
-      icon: BarChart3,
-      title: t("service.content.title"),
-      description: t("service.content.description"),
-    },
-    {
-      icon: Zap,
-      title: t("service.analytics.title"),
-      description: t("service.analytics.description"),
     },
   ];
 
