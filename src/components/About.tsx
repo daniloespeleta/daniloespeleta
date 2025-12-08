@@ -34,7 +34,7 @@ const About = () => {
             {keywords.map((keyword, index) => (
               <span
                 key={keyword}
-                className={`text-4xl md:text-5xl font-bold uppercase tracking-wide ${
+                className={`text-base md:text-lg font-bold uppercase tracking-wide ${
                   index % 2 === 0 ? "text-foreground" : "text-primary"
                 }`}
               >
