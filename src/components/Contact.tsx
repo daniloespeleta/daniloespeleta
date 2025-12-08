@@ -86,10 +86,64 @@ const Contact = () => {
           </Card>
 
           {/* Contact Info */}
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center space-y-8">
             <h3 className="text-3xl md:text-4xl font-bold text-foreground">
               {t("contact.cta")}
             </h3>
+
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">{t("contact.info.location")}</h4>
+                  <p className="text-muted-foreground">São Paulo, SP - Brasil</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">Email</h4>
+                  <a href="mailto:daniloespeleta@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                    daniloespeleta@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">WhatsApp</h4>
+                  <a href="https://wa.me/5511921457667" className="text-muted-foreground hover:text-primary transition-colors">
+                    +55 11 92145-7667
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-foreground mb-4">{t("contact.info.follow")}</h4>
+              <div className="flex gap-4">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                    aria-label={social.label}
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
