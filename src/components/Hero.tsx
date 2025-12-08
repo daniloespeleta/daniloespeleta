@@ -15,12 +15,15 @@ const Hero = () => {
             </span>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
-              {t("hero.titleLine1")}
-              <br />
-              <span className="text-primary">{t("hero.titleHighlight")}</span>
+              <span className="block animate-fade-in" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+                {t("hero.titleLine1")}
+              </span>
+              <span className="block text-primary animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
+                {t("hero.titleHighlight")}
+              </span>
             </h1>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>
               <Button size="lg" className="group" asChild>
                 <a href="https://www.linkedin.com/in/danilo-espeleta/" target="_blank" rel="noopener noreferrer">
                   {t("hero.viewWork")}
