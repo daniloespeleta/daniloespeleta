@@ -29,19 +29,19 @@ const About = () => {
           <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
             {t("about.paragraph2")}
           </p>
+        </div>
 
-          <div className="flex flex-wrap justify-center gap-3">
-            {keywords.map((keyword, index) => (
-              <span
-                key={keyword}
-                className={`text-xl md:text-2xl font-bold uppercase tracking-wide ${
-                  index % 2 === 0 ? "text-foreground" : "text-primary"
-                }`}
-              >
-                {keyword}
-              </span>
-            ))}
-          </div>
+        <div className="flex flex-wrap justify-center gap-4 max-w-6xl mx-auto">
+          {keywords.map((keyword, index) => (
+            <span
+              key={keyword}
+              className={`text-xl md:text-2xl font-bold uppercase tracking-wide ${
+                index % 2 === 0 ? "text-foreground" : "text-primary"
+              }`}
+            >
+              {keyword}
+            </span>
+          ))}
         </div>
       </div>
     </section>
