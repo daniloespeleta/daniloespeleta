@@ -10,7 +10,7 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="max-w-xl">
-            <span className="inline-block px-6 py-3 bg-primary/10 text-primary rounded-full text-lg font-bold mb-6 animate-fade-in uppercase tracking-wide">
+            <span className="inline-block px-8 py-4 bg-primary/10 text-primary text-lg font-bold mb-6 animate-fade-in uppercase tracking-wide">
               {t("hero.badge")}
             </span>
             

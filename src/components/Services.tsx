@@ -27,7 +27,7 @@ const Services = () => {
     <section id="services" className="py-20 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="inline-block px-6 py-3 bg-primary/10 text-primary rounded-full text-lg font-bold uppercase tracking-wide">
+          <span className="inline-block px-8 py-4 bg-primary/10 text-primary text-lg font-bold uppercase tracking-wide">
             {t("services.badge")}
           </span>
         </div>
