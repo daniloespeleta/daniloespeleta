@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import fenixImage from "@/assets/fenix-educacao-project.svg";
 import lbvImage from "@/assets/lbv-branding-project.png";
-import monchuImage from "@/assets/monchu-logo.jpeg";
+import monchuImage from "@/assets/monchu-logo.png";
 
 const Projects = () => {
   const { t } = useLanguage();
