@@ -16,7 +16,7 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold">
+          <span className="inline-block px-6 py-3 bg-primary/10 text-primary rounded-full text-lg font-bold uppercase tracking-wide">
             {t("contact.badge")}
           </span>
         </div>
