@@ -100,8 +100,8 @@ const translations: Record<Language, Record<string, string>> = {
     // About
     "about.badge": "About Me",
     "about.title": "Passionate About Digital Growth",
-    "about.paragraph1": "With over 8 years of experience in B2C digital marketing, CRM, growth, branding, and performance, I help companies transform leads into customers through data-driven strategies and marketing automation.",
-    "about.paragraph2": "My approach combines analytical thinking with creativity, focusing on ROI, campaign governance, and measurable KPIs. I believe in structured processes, continuous testing, and building scalable marketing operations.",
+    "about.paragraph1": "From downtown São Paulo, I'm all about diversity without barriers. I love music, movies, and finding offbeat things anywhere, from Keith Haring to playing cards in different ways. My experience in education and digital environments helped me grow in creativity, quick adaptability, and a purpose-driven approach to leadership.",
+    "about.paragraph2": "Fueled by creativity and collaboration, I turn challenges into growth opportunities, celebrate individuality, and inspire teams to perform at their best.",
     "about.credential1.title": "8+ Years Experience",
     "about.credential1.description": "CRM, Growth & Performance",
     "about.credential2.title": "50K+ Leads Managed",
