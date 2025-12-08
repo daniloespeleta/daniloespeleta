@@ -110,6 +110,16 @@ const translations: Record<Language, Record<string, string>> = {
     "about.credential3.description": "A/B Testing & Optimization",
     "about.role": "Digital Marketer",
     "about.specialty": "CRM & Growth Specialist",
+    "about.keyword1": "Integrated Marketing",
+    "about.keyword2": "Brand Leadership",
+    "about.keyword3": "Growth Marketing",
+    "about.keyword4": "Campaign Planning",
+    "about.keyword5": "CRM Strategy & Automation",
+    "about.keyword6": "Lifecycle Management",
+    "about.keyword7": "Data-Driven Optimization",
+    "about.keyword8": "Customer Engagement & Retention",
+    "about.keyword9": "Analytics",
+    "about.keyword10": "Content Development",
     
     // Contact
     "contact.badge": "Get in Touch",
@@ -236,6 +246,16 @@ const translations: Record<Language, Record<string, string>> = {
     "about.credential3.description": "Testes A/B & Otimização",
     "about.role": "Profissional de Marketing Digital",
     "about.specialty": "Especialista em CRM & Growth",
+    "about.keyword1": "Marketing Integrado",
+    "about.keyword2": "Liderança de Marca",
+    "about.keyword3": "Marketing de Crescimento",
+    "about.keyword4": "Planejamento de Campanhas",
+    "about.keyword5": "Estratégia e Automação de CRM",
+    "about.keyword6": "Gestão de Ciclo de Vida",
+    "about.keyword7": "Otimização Orientada por Dados",
+    "about.keyword8": "Engajamento e Retenção de Clientes",
+    "about.keyword9": "Analytics",
+    "about.keyword10": "Desenvolvimento de Conteúdo",
     
     // Contact
     "contact.badge": "Entre em Contato",

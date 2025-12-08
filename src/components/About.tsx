@@ -4,16 +4,16 @@ const About = () => {
   const { t } = useLanguage();
 
   const keywords = [
-    "Integrated Marketing",
-    "Brand Leadership",
-    "Growth Marketing",
-    "Campaign Planning",
-    "CRM Strategy & Automation",
-    "Lifecycle Management",
-    "Data-Driven Optimization",
-    "Customer Engagement & Retention",
-    "Analytics",
-    "Content Development",
+    t("about.keyword1"),
+    t("about.keyword2"),
+    t("about.keyword3"),
+    t("about.keyword4"),
+    t("about.keyword5"),
+    t("about.keyword6"),
+    t("about.keyword7"),
+    t("about.keyword8"),
+    t("about.keyword9"),
+    t("about.keyword10"),
   ];
 
   return (
