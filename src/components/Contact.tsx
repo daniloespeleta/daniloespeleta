@@ -120,8 +120,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground">WhatsApp</h4>
-                  <a href="https://wa.me/5511921457667" className="text-muted-foreground hover:text-primary transition-colors">
-                    +55 11 92145-7667
+                  <a href="https://wa.me/5511921786184" className="text-muted-foreground hover:text-primary transition-colors">
+                    +55 11 92178-6184
                   </a>
                 </div>
               </div>
