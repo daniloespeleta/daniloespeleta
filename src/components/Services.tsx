@@ -39,8 +39,8 @@ const Services = () => {
               className="group bg-card hover:bg-primary/5 border-border hover:border-primary/30 transition-all duration-300"
             >
               <CardContent className="p-8">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                  <service.icon className="h-7 w-7 text-primary" />
+                <div className="w-28 h-28 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                  <service.icon className="h-14 w-14 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-3">
                   {service.title}
