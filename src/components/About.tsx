@@ -30,11 +30,11 @@ const About = () => {
             {t("about.paragraph2")}
           </p>
 
-          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-3">
+          <div className="flex flex-wrap justify-center gap-3">
             {keywords.map((keyword, index) => (
               <span
                 key={keyword}
-                className={`text-2xl md:text-4xl font-bold uppercase tracking-wide ${
+                className={`text-sm font-bold uppercase tracking-wide ${
                   index % 2 === 0 ? "text-foreground" : "text-primary"
                 }`}
               >
