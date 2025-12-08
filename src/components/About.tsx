@@ -29,9 +29,6 @@ const About = () => {
           <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-6">
             {t("about.badge")}
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
-            {t("about.title")}
-          </h2>
           <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
             {t("about.paragraph1")}
           </p>
