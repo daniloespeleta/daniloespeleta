@@ -30,17 +30,26 @@ const About = () => {
             {t("about.paragraph2")}
           </p>
 
-          <div className="flex flex-wrap justify-center gap-3">
-            {keywords.map((keyword, index) => (
-              <span
-                key={keyword}
-                className={`text-sm font-bold uppercase tracking-wide ${
-                  index % 2 === 0 ? "text-foreground" : "text-primary"
-                }`}
-              >
-                {keyword}
-              </span>
-            ))}
+          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-4 max-w-3xl mx-auto">
+            {keywords.map((keyword, index) => {
+              const rotations = [-3, 2, -1, 3, -2, 1, -3, 2, -1, 3];
+              const margins = [0, 8, -4, 12, -8, 4, -6, 10, -2, 6];
+              
+              return (
+                <span
+                  key={keyword}
+                  className={`text-2xl md:text-4xl font-bold uppercase tracking-wide ${
+                    index % 2 === 0 ? "text-foreground" : "text-primary"
+                  }`}
+                  style={{
+                    transform: `rotate(${rotations[index]}deg)`,
+                    marginTop: `${margins[index]}px`,
+                  }}
+                >
+                  {keyword}
+                </span>
+              );
+            })}
           </div>
         </div>
       </div>
