@@ -1,25 +1,19 @@
-import { Award, Briefcase, GraduationCap } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const About = () => {
   const { t } = useLanguage();
 
-  const credentials = [
-    {
-      icon: Award,
-      title: t("about.credential1.title"),
-      description: t("about.credential1.description"),
-    },
-    {
-      icon: GraduationCap,
-      title: t("about.credential2.title"),
-      description: t("about.credential2.description"),
-    },
-    {
-      icon: Briefcase,
-      title: t("about.credential3.title"),
-      description: t("about.credential3.description"),
-    },
+  const keywords = [
+    "Integrated Marketing",
+    "Brand Leadership",
+    "Growth Marketing",
+    "Campaign Planning",
+    "CRM Strategy & Automation",
+    "Lifecycle Management",
+    "Data-Driven Optimization",
+    "Customer Engagement & Retention",
+    "Analytics",
+    "Content Development",
   ];
 
   return (
@@ -36,16 +30,16 @@ const About = () => {
             {t("about.paragraph2")}
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {credentials.map((credential) => (
-              <div
-                key={credential.title}
-                className="flex flex-col items-center text-center p-4 rounded-xl bg-card border border-border"
+          <div className="flex flex-wrap justify-center gap-3">
+            {keywords.map((keyword, index) => (
+              <span
+                key={keyword}
+                className={`text-sm font-bold uppercase tracking-wide ${
+                  index % 2 === 0 ? "text-foreground" : "text-primary"
+                }`}
               >
-                <credential.icon className="h-8 w-8 text-primary mb-3" />
-                <h4 className="font-semibold text-foreground text-sm">{credential.title}</h4>
-                <p className="text-xs text-muted-foreground">{credential.description}</p>
-              </div>
+                {keyword}
+              </span>
             ))}
           </div>
         </div>
