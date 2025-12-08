@@ -139,6 +139,7 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.info.locationValue": "São Paulo, SP - Brasil",
     "contact.info.email": "Email",
     "contact.info.follow": "Follow Me",
+    "contact.cta": "Let's Build Something Worthwhile",
     
     // Footer
     "footer.copyright": "Digital Marketing Portfolio. All rights reserved.",
@@ -275,6 +276,7 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.info.locationValue": "São Paulo, SP - Brasil",
     "contact.info.email": "Email",
     "contact.info.follow": "Siga-me",
+    "contact.cta": "Vamos construir algo que valha a pena",
     
     // Footer
     "footer.copyright": "Portfólio de Marketing Digital. Todos os direitos reservados.",
