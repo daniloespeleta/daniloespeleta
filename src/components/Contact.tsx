@@ -93,8 +93,8 @@ const Contact = () => {
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-primary" />
+                <div className="w-24 h-24 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-12 h-12 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground">{t("contact.info.location")}</h4>
@@ -103,8 +103,8 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-primary" />
+                <div className="w-24 h-24 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-12 h-12 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground">Email</h4>
@@ -115,8 +115,8 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="w-6 h-6 text-primary" />
+                <div className="w-24 h-24 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="w-12 h-12 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground">WhatsApp</h4>
@@ -136,10 +136,10 @@ const Contact = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
+                    className="w-24 h-24 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
                     aria-label={social.label}
                   >
-                    <social.icon className="w-5 h-5" />
+                    <social.icon className="w-12 h-12" />
                   </a>
                 ))}
               </div>
