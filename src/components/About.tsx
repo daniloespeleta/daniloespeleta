@@ -21,7 +21,7 @@ const About = () => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="text-left">
-            <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-6">
+            <span className="inline-block px-6 py-3 bg-primary/10 text-primary rounded-full text-lg font-bold mb-6 uppercase tracking-wide">
               {t("about.badge")}
             </span>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
