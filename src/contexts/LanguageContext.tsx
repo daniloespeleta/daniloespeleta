@@ -159,7 +159,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero
     "hero.badge": "Especialista em Marketing Digital",
-    "hero.titleLine1": "Fazendo leads avançarem no funil —",
+    "hero.titleLine1": "Faço leads avançarem no funil —",
     "hero.titleLine2": "",
     "hero.titleHighlight": "sem sair pela culatra.",
     "hero.description": "Ajudo empresas a escalar sua presença online através de SEO orientado por dados, campanhas de mídia social e estratégias de marketing de performance que entregam resultados mensuráveis.",
