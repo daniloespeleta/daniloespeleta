@@ -32,7 +32,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-end gap-4 text-right">
+          <div className="flex flex-wrap justify-end gap-4 text-right lg:pt-16">
             {keywords.map((keyword, index) => (
               <span
                 key={keyword}
