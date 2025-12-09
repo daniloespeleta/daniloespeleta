@@ -1,9 +1,15 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+
+const cvFiles = {
+  pt: "/CV_Danilo_Espeleta_PT.pdf",
+  en: "/CV_Danilo_Espeleta_ENG.pdf"
+};
 const Hero = () => {
   const {
-    t
+    t,
+    language
   } = useLanguage();
   return <section className="relative min-h-screen flex items-start pt-24 bg-[#ffffff]">
       <div className="container mx-auto px-6 py-8">
@@ -30,7 +36,7 @@ const Hero = () => {
                 </a>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <a href="/CV_Danilo_Espeleta_ATS.pdf" download>
+                <a href={cvFiles[language]} download>
                   {t("hero.downloadResume")}
                 </a>
               </Button>
