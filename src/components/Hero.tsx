@@ -12,7 +12,7 @@ const Hero = () => {
   const { t, language } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 bg-background overflow-hidden">
+    <section className="relative flex items-center pt-16 pb-8 bg-background overflow-hidden">
       <DecorativeShapes variant="hero" />
       
       <div className="container mx-auto px-6 relative z-10">
