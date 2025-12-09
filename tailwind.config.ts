@@ -63,6 +63,9 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+  		borderWidth: {
+  			'3': '3px'
+  		},
   		keyframes: {
   			'accordion-down': {
   				from: {
@@ -79,11 +82,76 @@ export default {
   				to: {
   					height: '0'
   				}
+  			},
+  			'fade-in': {
+  				'0%': {
+  					opacity: '0',
+  					transform: 'translateY(20px)'
+  				},
+  				'100%': {
+  					opacity: '1',
+  					transform: 'translateY(0)'
+  				}
+  			},
+  			'slide-in-left': {
+  				'0%': {
+  					opacity: '0',
+  					transform: 'translateX(-50px)'
+  				},
+  				'100%': {
+  					opacity: '1',
+  					transform: 'translateX(0)'
+  				}
+  			},
+  			'slide-in-right': {
+  				'0%': {
+  					opacity: '0',
+  					transform: 'translateX(50px)'
+  				},
+  				'100%': {
+  					opacity: '1',
+  					transform: 'translateX(0)'
+  				}
+  			},
+  			'bounce-in': {
+  				'0%': {
+  					opacity: '0',
+  					transform: 'scale(0.8)'
+  				},
+  				'50%': {
+  					transform: 'scale(1.05)'
+  				},
+  				'100%': {
+  					opacity: '1',
+  					transform: 'scale(1)'
+  				}
+  			},
+  			'float': {
+  				'0%, 100%': {
+  					transform: 'translateY(0)'
+  				},
+  				'50%': {
+  					transform: 'translateY(-20px)'
+  				}
+  			},
+  			'wiggle': {
+  				'0%, 100%': {
+  					transform: 'rotate(-3deg)'
+  				},
+  				'50%': {
+  					transform: 'rotate(3deg)'
+  				}
   			}
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  			'fade-in': 'fade-in 0.6s ease-out forwards',
+  			'slide-in-left': 'slide-in-left 0.6s ease-out forwards',
+  			'slide-in-right': 'slide-in-right 0.6s ease-out forwards',
+  			'bounce-in': 'bounce-in 0.5s ease-out forwards',
+  			'float': 'float 6s ease-in-out infinite',
+  			'wiggle': 'wiggle 2s ease-in-out infinite'
   		},
   		boxShadow: {
   			'2xs': 'var(--shadow-2xs)',
@@ -92,11 +160,13 @@ export default {
   			md: 'var(--shadow-md)',
   			lg: 'var(--shadow-lg)',
   			xl: 'var(--shadow-xl)',
-  			'2xl': 'var(--shadow-2xl)'
+  			'2xl': 'var(--shadow-2xl)',
+  			'brutal': '4px 4px 0px hsl(var(--border))',
+  			'brutal-lg': '8px 8px 0px hsl(var(--border))'
   		},
   		fontFamily: {
   			sans: [
-  				'Source Sans Pro',
+  				'Space Grotesk',
   				'ui-sans-serif',
   				'system-ui',
   				'-apple-system',
@@ -109,7 +179,7 @@ export default {
   				'sans-serif'
   			],
   			serif: [
-  				'Source Serif Pro',
+  				'Space Grotesk',
   				'ui-serif',
   				'Georgia',
   				'Cambria',
@@ -118,7 +188,7 @@ export default {
   				'serif'
   			],
   			mono: [
-  				'Source Code Pro',
+  				'Space Mono',
   				'ui-monospace',
   				'SFMono-Regular',
   				'Menlo',
