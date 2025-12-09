@@ -2,6 +2,7 @@ import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
+import DecorativeShapes from "./DecorativeShapes";
 import fenixImage from "@/assets/fenix-educacao-project.svg";
 import lbvImage from "@/assets/lbv-branding-project.png";
 import monchuImage from "@/assets/monchu-logo.png";
@@ -91,10 +92,12 @@ const Projects = () => {
   const projects = activeTab === "analytics" ? analyticsProjects : marketingProjects;
 
   return (
-    <section id="projects" className="py-20 bg-muted/20">
-      <div className="container mx-auto px-6">
+    <section id="projects" className="relative py-24 bg-background overflow-hidden">
+      <DecorativeShapes variant="projects" />
+      
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <span className="inline-block px-8 py-4 bg-primary/10 text-primary text-lg font-bold mb-8 uppercase tracking-wide">
+          <span className="inline-block px-6 py-3 bg-primary text-primary-foreground text-sm font-bold mb-8 uppercase tracking-wider border-3 border-foreground brutal-shadow">
             {t("projects.badge")}
           </span>
 
@@ -103,14 +106,22 @@ const Projects = () => {
             <Button
               variant={activeTab === "marketing" ? "default" : "outline"}
               onClick={() => setActiveTab("marketing")}
-              className="px-6"
+              className={`px-8 py-3 font-bold uppercase tracking-wide border-3 border-foreground brutal-shadow hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all ${
+                activeTab === "marketing" 
+                  ? "bg-primary text-primary-foreground" 
+                  : "bg-background text-foreground hover:bg-muted"
+              }`}
             >
               {t("projects.tab.marketing")}
             </Button>
             <Button
               variant={activeTab === "analytics" ? "default" : "outline"}
               onClick={() => setActiveTab("analytics")}
-              className="px-6"
+              className={`px-8 py-3 font-bold uppercase tracking-wide border-3 border-foreground brutal-shadow hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all ${
+                activeTab === "analytics" 
+                  ? "bg-primary text-primary-foreground" 
+                  : "bg-background text-foreground hover:bg-muted"
+              }`}
             >
               {t("projects.tab.analytics")}
             </Button>
@@ -118,8 +129,14 @@ const Projects = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <ProjectCard key={project.title} {...project} />
+          {projects.map((project, index) => (
+            <div 
+              key={project.title}
+              className="animate-fade-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <ProjectCard {...project} />
+            </div>
           ))}
         </div>
       </div>
