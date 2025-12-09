@@ -117,7 +117,7 @@ const translations: Record<Language, Record<string, string>> = {
     "about.keyword5": "CRM Strategy & Automation",
     "about.keyword6": "Lifecycle Management",
     "about.keyword7": "Data-Driven Optimization",
-    "about.keyword8": "Customer Engagement & Retention",
+    "about.keyword8": "Engagement & Retention",
     "about.keyword9": "Analytics",
     "about.keyword10": "Content Development",
     
@@ -254,7 +254,7 @@ const translations: Record<Language, Record<string, string>> = {
     "about.keyword5": "Estratégia e Automação de CRM",
     "about.keyword6": "Gestão de Ciclo de Vida",
     "about.keyword7": "Otimização Orientada por Dados",
-    "about.keyword8": "Engajamento e Retenção de Clientes",
+    "about.keyword8": "Engajamento e Retenção",
     "about.keyword9": "Analytics",
     "about.keyword10": "Desenvolvimento de Conteúdo",
     
