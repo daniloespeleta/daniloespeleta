@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
@@ -8,10 +9,23 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
-interface ContactEmailRequest {
-  name: string;
-  email: string;
-  message: string;
+// Input validation schema
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  message: z.string().trim().min(1, "Message is required").max(5000, "Message must be less than 5000 characters"),
+});
+
+// HTML escape function to prevent XSS in emails
+function escapeHtml(text: string): string {
+  const htmlEscapes: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+  return text.replace(/[&<>"']/g, (char) => htmlEscapes[char]);
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -23,9 +37,31 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, message }: ContactEmailRequest = await req.json();
+    const body = await req.json();
     
-    console.log(`Processing contact from: ${name} (${email})`);
+    // Validate input
+    const validationResult = contactSchema.safeParse(body);
+    
+    if (!validationResult.success) {
+      const errors = validationResult.error.errors.map(e => e.message).join(", ");
+      console.error("Validation failed:", errors);
+      return new Response(
+        JSON.stringify({ error: `Validation failed: ${errors}` }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const { name, email, message } = validationResult.data;
+    
+    // Escape HTML to prevent injection
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeMessage = escapeHtml(message);
+    
+    console.log(`Processing contact from: ${safeName} (${safeEmail})`);
 
     // Send email using Resend API directly
     const res = await fetch("https://api.resend.com/emails", {
@@ -37,13 +73,13 @@ const handler = async (req: Request): Promise<Response> => {
       body: JSON.stringify({
         from: "Portfolio Contact <onboarding@resend.dev>",
         to: ["daniloespeleta@gmail.com"],
-        subject: `Nova mensagem de contato: ${name}`,
+        subject: `Nova mensagem de contato: ${safeName}`,
         html: `
           <h2>Nova mensagem do seu portfólio</h2>
-          <p><strong>Nome:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Nome:</strong> ${safeName}</p>
+          <p><strong>Email:</strong> ${safeEmail}</p>
           <p><strong>Mensagem:</strong></p>
-          <p>${message.replace(/\n/g, '<br>')}</p>
+          <p>${safeMessage.replace(/\n/g, '<br>')}</p>
         `,
         reply_to: email,
       }),
@@ -52,7 +88,7 @@ const handler = async (req: Request): Promise<Response> => {
     if (!res.ok) {
       const error = await res.text();
       console.error("Resend API error:", error);
-      throw new Error(error);
+      throw new Error("Failed to send email");
     }
 
     const data = await res.json();
@@ -68,7 +104,7 @@ const handler = async (req: Request): Promise<Response> => {
   } catch (error: any) {
     console.error("Error sending email:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: "Failed to process your request" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
