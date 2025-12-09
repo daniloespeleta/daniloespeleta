@@ -22,22 +22,16 @@ const Contact = () => {
     setIsLoading(true);
 
     const formData = new FormData(e.currentTarget);
-    const firstName = formData.get('firstName') as string;
-    const lastName = formData.get('lastName') as string;
+    const name = formData.get('name') as string;
     const email = formData.get('email') as string;
-    const company = formData.get('company') as string;
     const message = formData.get('message') as string;
-
-    const fullMessage = company 
-      ? `Empresa: ${company}\n\n${message}`
-      : message;
 
     try {
       const { data, error } = await supabase.functions.invoke('send-contact-email', {
         body: {
-          name: `${firstName} ${lastName}`,
+          name,
           email,
-          message: fullMessage,
+          message,
         },
       });
 
@@ -77,31 +71,17 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="bg-card border-3 border-foreground brutal-shadow p-8">
             <form className="space-y-6" onSubmit={handleSubmit}>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">
-                    {t("contact.form.firstName")}
-                  </label>
-                  <Input 
-                    name="firstName" 
-                    placeholder="John" 
-                    required 
-                    disabled={isLoading}
-                    className="border-3 border-foreground bg-background focus:ring-0 focus:border-primary"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">
-                    {t("contact.form.lastName")}
-                  </label>
-                  <Input 
-                    name="lastName" 
-                    placeholder="Doe" 
-                    required 
-                    disabled={isLoading}
-                    className="border-3 border-foreground bg-background focus:ring-0 focus:border-primary"
-                  />
-                </div>
+              <div>
+                <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">
+                  {t("contact.form.name")}
+                </label>
+                <Input 
+                  name="name" 
+                  placeholder="John Doe" 
+                  required 
+                  disabled={isLoading}
+                  className="border-3 border-foreground bg-background focus:ring-0 focus:border-primary"
+                />
               </div>
               <div>
                 <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">
@@ -112,17 +92,6 @@ const Contact = () => {
                   type="email" 
                   placeholder="john@example.com" 
                   required 
-                  disabled={isLoading}
-                  className="border-3 border-foreground bg-background focus:ring-0 focus:border-primary"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">
-                  {t("contact.form.company")}
-                </label>
-                <Input 
-                  name="company" 
-                  placeholder={t("contact.form.companyPlaceholder")} 
                   disabled={isLoading}
                   className="border-3 border-foreground bg-background focus:ring-0 focus:border-primary"
                 />
