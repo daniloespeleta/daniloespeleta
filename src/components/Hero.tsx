@@ -5,8 +5,8 @@ const Hero = () => {
   const {
     t
   } = useLanguage();
-  return <section className="relative min-h-screen flex items-center pt-20 bg-[#ffffff]">
-      <div className="container mx-auto px-6 py-20">
+  return <section className="relative min-h-screen flex items-center pt-8 bg-[#ffffff]">
+      <div className="container mx-auto px-6 py-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="max-w-xl">
