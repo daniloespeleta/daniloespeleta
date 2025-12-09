@@ -10,15 +10,10 @@ const DecorativeShapes = ({ variant = "hero" }: DecorativeShapesProps) => {
   if (variant === "hero") {
     return (
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Large circle */}
+      {/* Large circle */}
         <div
           className="absolute -top-20 -right-20 w-80 h-80 bg-primary/20 rounded-full animate-float"
           style={getParallaxStyle(0.3)}
-        />
-        {/* Small accent square */}
-        <div
-          className="absolute top-40 left-10 w-16 h-16 bg-secondary border-3 border-foreground brutal-shadow rotate-12 animate-wiggle"
-          style={getParallaxStyle(0.5)}
         />
         {/* Accent circle */}
         <div
