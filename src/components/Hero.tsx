@@ -5,12 +5,14 @@ const Hero = () => {
   const {
     t
   } = useLanguage();
-  return <section className="relative min-h-screen flex items-center pt-8 bg-[#ffffff]">
-      <div className="container mx-auto px-6 py-12">
+  return <section className="relative min-h-screen flex items-start pt-24 bg-[#ffffff]">
+      <div className="container mx-auto px-6 py-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="max-w-xl">
-            
+            <span className="inline-block px-8 py-4 bg-primary/10 text-primary text-lg font-bold mb-6 animate-fade-in uppercase tracking-wide">
+              {t("hero.badge")}
+            </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6">
               <span className="block animate-fade-in" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
                 {t("hero.titleLine1")}

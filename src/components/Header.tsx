@@ -27,13 +27,8 @@ const Header = () => {
   }];
   return <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="/home" className="flex flex-col">
-          <span className="text-2xl font-bold text-foreground">
-            <span className="text-primary">Danilo</span>Espeleta
-          </span>
-          <span className="text-xs font-bold text-primary uppercase tracking-wide">
-            {t("hero.badge")}
-          </span>
+        <a href="/home" className="text-2xl font-bold text-foreground">
+          <span className="text-primary">Danilo</span>Espeleta
         </a>
 
         {/* Desktop Navigation */}
