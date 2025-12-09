@@ -1,16 +1,66 @@
-import { Mail, Linkedin, MapPin, MessageCircle, Send } from "lucide-react";
+import { useState } from "react";
+import { Mail, Linkedin, MapPin, MessageCircle, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import DecorativeShapes from "./DecorativeShapes";
 
 const Contact = () => {
   const { t } = useLanguage();
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
   const socialLinks = [
     { icon: Linkedin, href: "https://www.linkedin.com/in/danilo-espeleta/", label: "LinkedIn" },
   ];
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const firstName = formData.get('firstName') as string;
+    const lastName = formData.get('lastName') as string;
+    const email = formData.get('email') as string;
+    const company = formData.get('company') as string;
+    const message = formData.get('message') as string;
+
+    const fullMessage = company 
+      ? `Empresa: ${company}\n\n${message}`
+      : message;
+
+    try {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: `${firstName} ${lastName}`,
+          email,
+          message: fullMessage,
+        },
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: t("contact.success.title"),
+        description: t("contact.success.description"),
+      });
+
+      // Reset form
+      (e.target as HTMLFormElement).reset();
+    } catch (error: any) {
+      console.error('Error sending message:', error);
+      toast({
+        title: t("contact.error.title"),
+        description: t("contact.error.description"),
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <section id="contact" className="relative py-24 bg-background overflow-hidden">
@@ -26,22 +76,7 @@ const Contact = () => {
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Form */}
           <div className="bg-card border-3 border-foreground brutal-shadow p-8">
-            <form 
-              className="space-y-6"
-              onSubmit={(e) => {
-                e.preventDefault();
-                const formData = new FormData(e.currentTarget);
-                const firstName = formData.get('firstName') as string;
-                const lastName = formData.get('lastName') as string;
-                const email = formData.get('email') as string;
-                const company = formData.get('company') as string;
-                const message = formData.get('message') as string;
-                
-                const subject = encodeURIComponent(`Contact from ${firstName} ${lastName}`);
-                const body = encodeURIComponent(`Name: ${firstName} ${lastName}\nEmail: ${email}\nCompany: ${company}\n\nMessage:\n${message}`);
-                window.location.href = `mailto:daniloespeleta@gmail.com?subject=${subject}&body=${body}`;
-              }}
-            >
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">
@@ -51,6 +86,7 @@ const Contact = () => {
                     name="firstName" 
                     placeholder="John" 
                     required 
+                    disabled={isLoading}
                     className="border-3 border-foreground bg-background focus:ring-0 focus:border-primary"
                   />
                 </div>
@@ -62,6 +98,7 @@ const Contact = () => {
                     name="lastName" 
                     placeholder="Doe" 
                     required 
+                    disabled={isLoading}
                     className="border-3 border-foreground bg-background focus:ring-0 focus:border-primary"
                   />
                 </div>
@@ -75,6 +112,7 @@ const Contact = () => {
                   type="email" 
                   placeholder="john@example.com" 
                   required 
+                  disabled={isLoading}
                   className="border-3 border-foreground bg-background focus:ring-0 focus:border-primary"
                 />
               </div>
@@ -85,6 +123,7 @@ const Contact = () => {
                 <Input 
                   name="company" 
                   placeholder={t("contact.form.companyPlaceholder")} 
+                  disabled={isLoading}
                   className="border-3 border-foreground bg-background focus:ring-0 focus:border-primary"
                 />
               </div>
@@ -97,15 +136,26 @@ const Contact = () => {
                   placeholder={t("contact.form.messagePlaceholder")}
                   className="min-h-[120px] border-3 border-foreground bg-background focus:ring-0 focus:border-primary"
                   required
+                  disabled={isLoading}
                 />
               </div>
               <Button 
                 type="submit" 
+                disabled={isLoading}
                 className="w-full border-3 border-foreground brutal-shadow hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all bg-primary text-primary-foreground font-bold uppercase tracking-wide" 
                 size="lg"
               >
-                {t("contact.form.submit")}
-                <Send className="ml-2 h-5 w-5" />
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    {t("contact.form.sending")}
+                  </>
+                ) : (
+                  <>
+                    {t("contact.form.submit")}
+                    <Send className="ml-2 h-5 w-5" />
+                  </>
+                )}
               </Button>
             </form>
           </div>
