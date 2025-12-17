@@ -19,8 +19,6 @@ const About = () => {
 
   const colors = [
     "bg-primary text-primary-foreground",
-    "bg-secondary text-secondary-foreground",
-    "bg-accent text-accent-foreground",
     "bg-foreground text-background",
   ];
 
@@ -31,12 +29,12 @@ const About = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div className="text-left">
-            <span className="inline-block px-6 py-3 bg-accent text-accent-foreground text-sm font-bold mb-8 uppercase tracking-wider border-3 border-foreground brutal-shadow">
+            <span className="inline-block px-8 py-4 bg-accent text-accent-foreground text-3xl font-bold mb-8 uppercase tracking-wider border-3 border-foreground brutal-shadow">
               {t("about.badge")}
             </span>
             
             <div className="space-y-6">
-              <p className="text-lg text-muted-foreground leading-relaxed border-l-4 border-primary pl-6">
+              <p className="text-lg text-muted-foreground leading-relaxed border-l-4 border-secondary pl-6">
                 {t("about.paragraph1")}
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed border-l-4 border-secondary pl-6">
