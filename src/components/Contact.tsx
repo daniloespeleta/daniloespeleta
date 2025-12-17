@@ -62,7 +62,7 @@ const Contact = () => {
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <span className="inline-block px-6 py-3 bg-accent text-accent-foreground text-sm font-bold uppercase tracking-wider border-3 border-foreground brutal-shadow">
+          <span className="inline-block px-8 py-4 bg-accent text-accent-foreground text-3xl font-bold uppercase tracking-wider border-3 border-foreground brutal-shadow">
             {t("contact.badge")}
           </span>
         </div>

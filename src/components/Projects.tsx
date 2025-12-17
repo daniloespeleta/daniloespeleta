@@ -97,30 +97,30 @@ const Projects = () => {
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <span className="inline-block px-6 py-3 bg-accent text-accent-foreground text-sm font-bold mb-8 uppercase tracking-wider border-3 border-foreground brutal-shadow">
+          <span className="inline-block px-8 py-4 bg-accent text-accent-foreground text-3xl font-bold mb-8 uppercase tracking-wider border-3 border-foreground brutal-shadow">
             {t("projects.badge")}
           </span>
 
           {/* Filter Tabs */}
           <div className="flex justify-center gap-4">
             <Button
-              variant={activeTab === "marketing" ? "default" : "outline"}
+              variant="outline"
               onClick={() => setActiveTab("marketing")}
-              className={`px-8 py-3 font-bold uppercase tracking-wide border-3 border-foreground brutal-shadow hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all ${
+              className={`px-8 py-3 font-bold uppercase tracking-wide border-3 border-foreground transition-all ${
                 activeTab === "marketing" 
-                  ? "bg-primary text-primary-foreground" 
-                  : "bg-background text-foreground hover:bg-muted"
+                  ? "shadow-none translate-x-[4px] translate-y-[4px] bg-background text-foreground" 
+                  : "brutal-shadow bg-background text-foreground hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg"
               }`}
             >
               {t("projects.tab.marketing")}
             </Button>
             <Button
-              variant={activeTab === "analytics" ? "default" : "outline"}
+              variant="outline"
               onClick={() => setActiveTab("analytics")}
-              className={`px-8 py-3 font-bold uppercase tracking-wide border-3 border-foreground brutal-shadow hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all ${
+              className={`px-8 py-3 font-bold uppercase tracking-wide border-3 border-foreground transition-all ${
                 activeTab === "analytics" 
-                  ? "bg-primary text-primary-foreground" 
-                  : "bg-background text-foreground hover:bg-muted"
+                  ? "shadow-none translate-x-[4px] translate-y-[4px] bg-background text-foreground" 
+                  : "brutal-shadow bg-background text-foreground hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg"
               }`}
             >
               {t("projects.tab.analytics")}
