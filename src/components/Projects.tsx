@@ -108,7 +108,7 @@ const Projects = () => {
               onClick={() => setActiveTab("marketing")}
               className={`px-8 py-3 font-bold uppercase tracking-wide border-3 border-foreground transition-all ${
                 activeTab === "marketing" 
-                  ? "shadow-none translate-x-[4px] translate-y-[4px] bg-background text-foreground" 
+                  ? "shadow-none translate-x-[4px] translate-y-[4px] bg-background text-foreground hover:bg-background hover:text-foreground" 
                   : "brutal-shadow bg-background text-foreground hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg hover:bg-foreground hover:text-background"
               }`}
             >
@@ -119,7 +119,7 @@ const Projects = () => {
               onClick={() => setActiveTab("analytics")}
               className={`px-8 py-3 font-bold uppercase tracking-wide border-3 border-foreground transition-all ${
                 activeTab === "analytics" 
-                  ? "shadow-none translate-x-[4px] translate-y-[4px] bg-background text-foreground" 
+                  ? "shadow-none translate-x-[4px] translate-y-[4px] bg-background text-foreground hover:bg-background hover:text-foreground" 
                   : "brutal-shadow bg-background text-foreground hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg hover:bg-foreground hover:text-background"
               }`}
             >
