@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import DecorativeShapes from "./DecorativeShapes";
@@ -42,23 +41,12 @@ const Hero = () => {
             </h1>
 
             <div 
-              className="flex flex-col sm:flex-row gap-4 animate-fade-in"
+              className="animate-fade-in"
               style={{ animationDelay: '0.6s' }}
             >
               <Button 
                 size="lg" 
-                className="group border-3 border-foreground brutal-shadow hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all bg-primary text-primary-foreground font-bold uppercase tracking-wide"
-                asChild
-              >
-                <a href="https://www.linkedin.com/in/danilo-espeleta/" target="_blank" rel="noopener noreferrer">
-                  {t("hero.viewWork")}
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-3 border-foreground brutal-shadow hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all bg-background text-foreground font-bold uppercase tracking-wide hover:bg-accent hover:text-accent-foreground"
+                className="border-3 border-foreground brutal-shadow hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all bg-background text-foreground font-bold uppercase tracking-wide hover:bg-foreground hover:text-background"
                 asChild
               >
                 <a href={cvFiles[language]} download>
