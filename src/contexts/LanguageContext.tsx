@@ -224,7 +224,7 @@ const translations: Record<Language, Record<string, string>> = {
     "project.monchu.title": "Monchu - Marketing de Experiência",
     "project.monchu.category": "Produção de Eventos",
     "project.monchu.description": "Ampliei a audiência de eventos de 500 para mais de 3.000 participantes em 3 anos, aumentando o engajamento em redes sociais em 150%. Negociei patrocínios que elevaram o faturamento indireto em 40%, reduzindo prazos operacionais em 25%.",
-    "project.monchu.metric1": "Crescimento de Audiência",
+    "project.monchu.metric1": "+ Audiência",
     "project.monchu.metric2": "Engajamento",
     
     // Services
