@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
-import { Button } from "@/components/ui/button";
+
 const Welcome = () => {
   const navigate = useNavigate();
   const {
@@ -12,19 +12,19 @@ const Welcome = () => {
   };
   return <div className="min-h-screen bg-background flex items-center justify-center px-6">
       <div className="text-center max-w-md">
-        
-        
-        
-        
-        
-
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" variant="outline" className="min-w-[160px]" onClick={() => handleLanguageSelect("pt")}>
+          <button
+            onClick={() => handleLanguageSelect("pt")}
+            className="min-w-[180px] px-8 py-4 bg-background text-foreground font-bold uppercase tracking-wide border-3 border-accent shadow-[4px_4px_0px_hsl(320,80%,55%)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-150"
+          >
             Português
-          </Button>
-          <Button size="lg" variant="outline" className="min-w-[160px]" onClick={() => handleLanguageSelect("en")}>
+          </button>
+          <button
+            onClick={() => handleLanguageSelect("en")}
+            className="min-w-[180px] px-8 py-4 bg-background text-foreground font-bold uppercase tracking-wide border-3 border-accent shadow-[4px_4px_0px_hsl(320,80%,55%)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-150"
+          >
             English
-          </Button>
+          </button>
         </div>
       </div>
     </div>;
