@@ -90,7 +90,8 @@ async function verifyCaptcha(token: string, clientIp: string): Promise<boolean> 
     });
 
     const data = await response.json();
-    console.log("hCaptcha verification response:", data);
+    // Log only success/failure status, not full response data
+    console.log("hCaptcha verification completed:", data.success === true ? "passed" : "failed");
     return data.success === true;
   } catch (error) {
     console.error("hCaptcha verification error:", error);
@@ -102,7 +103,7 @@ const handler = async (req: Request): Promise<Response> => {
   const origin = req.headers.get("origin");
   const corsHeaders = getCorsHeaders(origin);
   
-  console.log("Received contact form submission from origin:", origin);
+  console.log("Received contact form submission");
 
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -111,7 +112,7 @@ const handler = async (req: Request): Promise<Response> => {
 
   // Verify origin is allowed
   if (origin && !ALLOWED_ORIGINS.includes(origin)) {
-    console.warn(`Request from unauthorized origin: ${origin}`);
+    console.warn("Request from unauthorized origin blocked");
     return new Response(
       JSON.stringify({ error: "Unauthorized origin" }),
       {
@@ -129,7 +130,7 @@ const handler = async (req: Request): Promise<Response> => {
   // Check rate limit
   const rateLimit = checkRateLimit(clientIp);
   if (!rateLimit.allowed) {
-    console.warn(`Rate limit exceeded for IP: ${clientIp}`);
+    console.warn("Rate limit exceeded");
     return new Response(
       JSON.stringify({ error: "Too many requests. Please try again later." }),
       {
@@ -151,7 +152,7 @@ const handler = async (req: Request): Promise<Response> => {
     
     if (!validationResult.success) {
       const errors = validationResult.error.errors.map(e => e.message).join(", ");
-      console.error("Validation failed:", errors);
+      console.error("Validation failed");
       return new Response(
         JSON.stringify({ error: `Validation failed: ${errors}` }),
         {
@@ -165,7 +166,7 @@ const handler = async (req: Request): Promise<Response> => {
     
     // Honeypot check - if website field has content, it's likely a bot
     if (website && website.length > 0) {
-      console.warn(`Honeypot triggered from IP: ${clientIp}`);
+      console.warn("Honeypot triggered - bot detected");
       // Return success to not alert bots, but don't send email
       return new Response(JSON.stringify({ success: true }), {
         status: 200,
@@ -176,7 +177,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Verify hCaptcha token
     const captchaValid = await verifyCaptcha(captchaToken, clientIp);
     if (!captchaValid) {
-      console.warn(`Invalid captcha from IP: ${clientIp}`);
+      console.warn("Invalid captcha verification");
       return new Response(
         JSON.stringify({ error: "Captcha verification failed. Please try again." }),
         {
@@ -191,7 +192,7 @@ const handler = async (req: Request): Promise<Response> => {
     const safeEmail = escapeHtml(email);
     const safeMessage = escapeHtml(message);
     
-    console.log(`Processing verified contact from: ${safeName} (${safeEmail})`);
+    console.log("Processing verified contact submission");
 
     // Send email using Resend API directly
     const res = await fetch("https://api.resend.com/emails", {
@@ -222,7 +223,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const data = await res.json();
-    console.log("Email sent successfully:", data);
+    console.log("Email sent successfully");
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
