@@ -2,6 +2,22 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const HCAPTCHA_SECRET_KEY = Deno.env.get("HCAPTCHA_SECRET_KEY");
+
+// CORS - Restrict to allowed origins only
+const ALLOWED_ORIGINS = [
+  "https://daniloespeleta.lovable.app",
+  "https://id-preview--c046602f-979f-45c6-9bb3-500af19976dc.lovable.app"
+];
+
+function getCorsHeaders(origin: string | null): Record<string, string> {
+  const allowedOrigin = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  return {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+  };
+}
 
 // Rate limiting configuration
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
@@ -37,19 +53,13 @@ function checkRateLimit(ip: string): { allowed: boolean; remaining: number } {
   return { allowed: true, remaining: MAX_REQUESTS_PER_WINDOW - entry.count };
 }
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
-};
-
 // Input validation schema
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
   email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
   message: z.string().trim().min(1, "Message is required").max(5000, "Message must be less than 5000 characters"),
-  // Honeypot field - should always be empty
   website: z.string().max(0, "Invalid submission").optional().default(""),
+  captchaToken: z.string().min(1, "Captcha verification required"),
 });
 
 // HTML escape function to prevent XSS in emails
@@ -64,12 +74,51 @@ function escapeHtml(text: string): string {
   return text.replace(/[&<>"']/g, (char) => htmlEscapes[char]);
 }
 
+// Verify hCaptcha token
+async function verifyCaptcha(token: string, clientIp: string): Promise<boolean> {
+  try {
+    const response = await fetch("https://api.hcaptcha.com/siteverify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        secret: HCAPTCHA_SECRET_KEY || "",
+        response: token,
+        remoteip: clientIp,
+      }),
+    });
+
+    const data = await response.json();
+    console.log("hCaptcha verification response:", data);
+    return data.success === true;
+  } catch (error) {
+    console.error("hCaptcha verification error:", error);
+    return false;
+  }
+}
+
 const handler = async (req: Request): Promise<Response> => {
-  console.log("Received contact form submission");
+  const origin = req.headers.get("origin");
+  const corsHeaders = getCorsHeaders(origin);
+  
+  console.log("Received contact form submission from origin:", origin);
 
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Verify origin is allowed
+  if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+    console.warn(`Request from unauthorized origin: ${origin}`);
+    return new Response(
+      JSON.stringify({ error: "Unauthorized origin" }),
+      {
+        status: 403,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      }
+    );
   }
 
   // Get client IP for rate limiting
@@ -112,7 +161,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    const { name, email, message, website } = validationResult.data;
+    const { name, email, message, website, captchaToken } = validationResult.data;
     
     // Honeypot check - if website field has content, it's likely a bot
     if (website && website.length > 0) {
@@ -123,13 +172,26 @@ const handler = async (req: Request): Promise<Response> => {
         headers: { "Content-Type": "application/json", ...corsHeaders },
       });
     }
+
+    // Verify hCaptcha token
+    const captchaValid = await verifyCaptcha(captchaToken, clientIp);
+    if (!captchaValid) {
+      console.warn(`Invalid captcha from IP: ${clientIp}`);
+      return new Response(
+        JSON.stringify({ error: "Captcha verification failed. Please try again." }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
     
     // Escape HTML to prevent injection
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safeMessage = escapeHtml(message);
     
-    console.log(`Processing contact from: ${safeName} (${safeEmail})`);
+    console.log(`Processing verified contact from: ${safeName} (${safeEmail})`);
 
     // Send email using Resend API directly
     const res = await fetch("https://api.resend.com/emails", {
