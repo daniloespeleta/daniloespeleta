@@ -1,88 +1,66 @@
 
 
-# Security Implementation: hCaptcha + CORS Restriction
+## Botões de Idioma com Estilo Neo-Brutalism Moderno
 
-## Overview
+### Objetivo
+Transformar os botões de seleção de idioma na página inicial para um estilo mais moderno e interativo, seguindo o padrão neo-brutalism já usado nos filtros de projetos.
 
-Implementing two security enhancements using your provided hCaptcha keys:
-- **Site Key**: `3e2a7148-16a6-446a-ba36-7bde3f68b622` (frontend)
-- **Secret Key**: Will be stored as `HCAPTCHA_SECRET_KEY` (backend)
+### Design Visual
+
+**Estado Normal:**
+- Borda rosa (3px) usando a cor `accent` do design system
+- Sombra brutal rosa (4px 4px)
+- Fundo branco com texto escuro
+- Fonte em negrito e uppercase
+
+**Estado Hover (efeito "pressionado"):**
+- Sombra removida
+- Botão desloca para baixo/direita (translate 4px)
+- Cria a ilusão de que o botão foi pressionado
+- Transição suave (150ms)
+
+### Referência Visual
+O comportamento será idêntico aos botões de filtro "Marketing Digital" e "Análise de Dados" na seção de Projetos - quando você passa o mouse, parece que o botão afunda.
 
 ---
 
-## Implementation Steps
+## Detalhes Técnicos
 
-### Step 1: Add Backend Secret
+### Arquivo a ser modificado
+`src/pages/Welcome.tsx`
 
-Store `HCAPTCHA_SECRET_KEY` with value `ES_410bd043c5194a8085fcf254eec789f8`
+### Mudanças
 
-### Step 2: Update index.html
+1. **Remover** o uso do componente `Button` padrão
+2. **Criar** botões customizados com classes Tailwind:
+   - `border-3 border-accent` - borda rosa de 3px
+   - `shadow-[4px_4px_0px_hsl(320,80%,55%)]` - sombra rosa brutal
+   - `hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px]` - efeito pressionado
+   - `transition-all duration-150` - animação suave
+   - `font-bold uppercase tracking-wide` - tipografia marcante
+   - `px-8 py-4` - padding generoso
 
-Add hCaptcha script to load the widget:
+### Código Final dos Botões
 
-```html
-<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+```tsx
+<button
+  onClick={() => handleLanguageSelect("pt")}
+  className="min-w-[180px] px-8 py-4 bg-background text-foreground font-bold uppercase tracking-wide border-3 border-accent shadow-[4px_4px_0px_hsl(320,80%,55%)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-150"
+>
+  Português
+</button>
+
+<button
+  onClick={() => handleLanguageSelect("en")}
+  className="min-w-[180px] px-8 py-4 bg-background text-foreground font-bold uppercase tracking-wide border-3 border-accent shadow-[4px_4px_0px_hsl(320,80%,55%)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-150"
+>
+  English
+</button>
 ```
 
-### Step 3: Update Contact Form (src/components/Contact.tsx)
-
-- Add state for captcha token
-- Add hCaptcha widget with Site Key `3e2a7148-16a6-446a-ba36-7bde3f68b622`
-- Include token in form submission
-- Disable submit button until captcha is completed
-- Reset captcha after submission
-
-### Step 4: Update Edge Function (supabase/functions/send-contact-email/index.ts)
-
-**CORS Restriction:**
-```typescript
-const ALLOWED_ORIGINS = [
-  "https://daniloespeleta.lovable.app",
-  "https://id-preview--c046602f-979f-45c6-9bb3-500af19976dc.lovable.app"
-];
-```
-
-**hCaptcha Verification:**
-- Add `captchaToken` to validation schema
-- Verify token with hCaptcha API using secret key
-- Reject requests with invalid/missing tokens
-
-### Step 5: Add TypeScript Declarations (src/vite-env.d.ts)
-
-Add hCaptcha global type declarations for TypeScript compatibility.
-
----
-
-## Files to Modify
-
-| File | Changes |
-|------|---------|
-| `index.html` | Add hCaptcha script tag |
-| `src/components/Contact.tsx` | hCaptcha widget + state management |
-| `supabase/functions/send-contact-email/index.ts` | CORS restriction + captcha verification |
-| `src/vite-env.d.ts` | TypeScript declarations for hCaptcha |
-
----
-
-## User Experience After Implementation
-
-1. User fills out contact form
-2. User clicks "I am human" checkbox (may see visual challenge)
-3. Submit button becomes enabled
-4. Form submits with captcha token
-5. Backend verifies captcha before sending email
-6. On success, form and captcha reset
-
----
-
-## Security Layers (Defense in Depth)
-
-| Layer | Protection |
-|-------|------------|
-| Honeypot | Catches basic bots |
-| Rate Limiting | 3 requests/minute per IP |
-| hCaptcha | Visual challenge for sophisticated bots |
-| CORS | Only allows requests from your domains |
-| Input Validation | Prevents injection attacks |
-| HTML Escaping | Prevents XSS in emails |
+### Resultado Esperado
+- Botões com visual marcante e moderno
+- Borda e sombra na cor rosa (accent)
+- Ao passar o mouse, o botão "afunda" criando feedback visual
+- Consistente com o estilo neo-brutalism do resto do site
 
