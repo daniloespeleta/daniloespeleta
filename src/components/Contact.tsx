@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Mail, Linkedin, MapPin, MessageCircle, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,25 +8,100 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import DecorativeShapes from "./DecorativeShapes";
 
+const HCAPTCHA_SITE_KEY = "3e2a7148-16a6-446a-ba36-7bde3f68b622";
+
+// Type for hCaptcha global object
+interface HCaptchaInstance {
+  render: (container: HTMLElement, options: Record<string, unknown>) => string;
+  reset: (widgetId?: string) => void;
+  getResponse: (widgetId?: string) => string;
+}
+
+const getHCaptcha = (): HCaptchaInstance | undefined => {
+  return (window as unknown as { hcaptcha?: HCaptchaInstance }).hcaptcha;
+};
+
 const Contact = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const captchaRef = useRef<HTMLDivElement>(null);
+  const captchaWidgetId = useRef<string | null>(null);
 
   const socialLinks = [
     { icon: Linkedin, href: "https://www.linkedin.com/in/danilo-espeleta/", label: "LinkedIn" },
   ];
 
+  const renderCaptcha = useCallback(() => {
+    const hcaptcha = getHCaptcha();
+    if (captchaRef.current && hcaptcha && !captchaWidgetId.current) {
+      try {
+        captchaWidgetId.current = hcaptcha.render(captchaRef.current, {
+          sitekey: HCAPTCHA_SITE_KEY,
+          callback: (token: string) => {
+            setCaptchaToken(token);
+          },
+          'expired-callback': () => {
+            setCaptchaToken(null);
+          },
+          'error-callback': () => {
+            setCaptchaToken(null);
+          },
+          theme: 'light',
+          size: 'normal',
+        });
+      } catch (error) {
+        // Widget might already be rendered
+        console.log('hCaptcha already rendered or error:', error);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const hcaptcha = getHCaptcha();
+    // Check if hcaptcha script is already loaded
+    if (hcaptcha) {
+      renderCaptcha();
+    } else {
+      // Wait for script to load
+      const checkHcaptcha = setInterval(() => {
+        if (getHCaptcha()) {
+          clearInterval(checkHcaptcha);
+          renderCaptcha();
+        }
+      }, 100);
+
+      return () => clearInterval(checkHcaptcha);
+    }
+  }, [renderCaptcha]);
+
+  const resetCaptcha = () => {
+    setCaptchaToken(null);
+    const hcaptcha = getHCaptcha();
+    if (hcaptcha && captchaWidgetId.current) {
+      hcaptcha.reset(captchaWidgetId.current);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    if (!captchaToken) {
+      toast({
+        title: t("contact.error.captcha"),
+        description: t("contact.error.captchaDescription"),
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     const formData = new FormData(e.currentTarget);
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
     const message = formData.get('message') as string;
-
-    // Get honeypot field value
     const website = formData.get('website') as string;
 
     try {
@@ -35,7 +110,8 @@ const Contact = () => {
           name,
           email,
           message,
-          website, // Honeypot field
+          website,
+          captchaToken,
         },
       });
 
@@ -46,8 +122,9 @@ const Contact = () => {
         description: t("contact.success.description"),
       });
 
-      // Reset form
+      // Reset form and captcha
       (e.target as HTMLFormElement).reset();
+      resetCaptcha();
     } catch (error: any) {
       console.error('Error sending message:', error);
       toast({
@@ -123,10 +200,16 @@ const Contact = () => {
                   disabled={isLoading}
                 />
               </div>
+              
+              {/* hCaptcha Widget */}
+              <div className="flex justify-center">
+                <div ref={captchaRef}></div>
+              </div>
+
               <Button 
                 type="submit" 
-                disabled={isLoading}
-                className="w-full border-3 border-foreground brutal-shadow hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all bg-primary text-primary-foreground font-bold uppercase tracking-wide" 
+                disabled={isLoading || !captchaToken}
+                className="w-full border-3 border-foreground brutal-shadow hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all bg-primary text-primary-foreground font-bold uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed" 
                 size="lg"
               >
                 {isLoading ? (
