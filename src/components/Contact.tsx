@@ -26,12 +26,16 @@ const Contact = () => {
     const email = formData.get('email') as string;
     const message = formData.get('message') as string;
 
+    // Get honeypot field value
+    const website = formData.get('website') as string;
+
     try {
       const { data, error } = await supabase.functions.invoke('send-contact-email', {
         body: {
           name,
           email,
           message,
+          website, // Honeypot field
         },
       });
 
@@ -71,6 +75,17 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="bg-card border-3 border-foreground brutal-shadow p-8">
             <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Honeypot field - hidden from users, catches bots */}
+              <div className="absolute -left-[9999px]" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
               <div>
                 <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">
                   {t("contact.form.name")}
