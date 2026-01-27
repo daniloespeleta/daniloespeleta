@@ -19,11 +19,11 @@ const Welcome = () => {
         
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" variant="outline" className="min-w-[160px]" onClick={() => handleLanguageSelect("en")}>
-            🇺🇸 English
-          </Button>
           <Button size="lg" variant="outline" className="min-w-[160px]" onClick={() => handleLanguageSelect("pt")}>
-            🇧🇷 Português
+            Português
+          </Button>
+          <Button size="lg" variant="outline" className="min-w-[160px]" onClick={() => handleLanguageSelect("en")}>
+            English
           </Button>
         </div>
       </div>
