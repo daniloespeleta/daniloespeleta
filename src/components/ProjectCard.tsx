@@ -11,9 +11,10 @@ interface ProjectCardProps {
   image: string;
   link?: string;
   imageContain?: boolean;
+  hideLink?: boolean;
 }
 
-const ProjectCard = ({ title, category, description, metrics, tags, image, link, imageContain }: ProjectCardProps) => {
+const ProjectCard = ({ title, category, description, metrics, tags, image, link, imageContain, hideLink }: ProjectCardProps) => {
   const { t } = useLanguage();
 
   return (
@@ -68,15 +69,17 @@ const ProjectCard = ({ title, category, description, metrics, tags, image, link,
           ))}
         </div>
         
-        <a
-          href={link || "#"}
-          target={link ? "_blank" : undefined}
-          rel={link ? "noopener noreferrer" : undefined}
-          className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground font-bold uppercase text-sm border-2 border-foreground brutal-shadow hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all"
-        >
-          {t("projects.viewProject")}
-          <ExternalLink className="ml-2 h-4 w-4" />
-        </a>
+        {!hideLink && (
+          <a
+            href={link || "#"}
+            target={link ? "_blank" : undefined}
+            rel={link ? "noopener noreferrer" : undefined}
+            className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground font-bold uppercase text-sm border-2 border-foreground brutal-shadow hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all"
+          >
+            {t("projects.viewProject")}
+            <ExternalLink className="ml-2 h-4 w-4" />
+          </a>
+        )}
       </div>
     </div>
   );

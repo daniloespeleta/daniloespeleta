@@ -62,6 +62,7 @@ const Projects = () => {
       tags: ["CRM", "Email Automation", "Power BI"],
       image: fenixImage,
       imageContain: true,
+      hideLink: true,
     },
     {
       title: t("project.lbv.title"),
@@ -74,6 +75,7 @@ const Projects = () => {
       tags: ["Branding", "360º Campaigns", "Stakeholders"],
       image: lbvImage,
       imageContain: true,
+      hideLink: true,
     },
     {
       title: t("project.monchu.title"),
@@ -86,6 +88,7 @@ const Projects = () => {
       tags: ["Events", "Social Media", "Sponsorships"],
       image: monchuImage,
       imageContain: true,
+      hideLink: true,
     },
   ];
 
