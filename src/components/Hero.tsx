@@ -46,7 +46,7 @@ const Hero = () => {
             >
               <Button 
                 size="lg" 
-                className="border-3 border-foreground brutal-shadow hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg transition-all bg-background text-foreground font-bold uppercase tracking-wide hover:bg-foreground hover:text-background"
+                className="border-3 border-foreground shadow-brutal bg-background text-foreground font-bold uppercase tracking-wide hover:bg-foreground hover:text-background hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
                 asChild
               >
                 <a href={cvFiles[language]} download>
