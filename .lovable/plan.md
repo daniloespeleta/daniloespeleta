@@ -1,115 +1,88 @@
 
-# Security Enhancements for Contact Form
 
-This plan implements two security improvements: hCaptcha integration for bot protection and CORS restriction to only allow requests from your production domain.
+# Security Implementation: hCaptcha + CORS Restriction
 
-## Why These Changes?
+## Overview
 
-1. **hCaptcha**: While the honeypot and rate limiting help, sophisticated bots can bypass them. hCaptcha provides a visual challenge that's much harder for bots to solve while being privacy-friendly (doesn't track users like Google reCAPTCHA).
-
-2. **CORS Restriction**: Currently the backend accepts requests from any domain (`*`). Restricting to your production domain prevents attackers from making requests to your backend from malicious websites.
+Implementing two security enhancements using your provided hCaptcha keys:
+- **Site Key**: `3e2a7148-16a6-446a-ba36-7bde3f68b622` (frontend)
+- **Secret Key**: Will be stored as `HCAPTCHA_SECRET_KEY` (backend)
 
 ---
 
 ## Implementation Steps
 
-### Step 1: Add hCaptcha Secret Key
+### Step 1: Add Backend Secret
 
-You'll need to:
-1. Sign up at [hCaptcha.com](https://www.hcaptcha.com/) (free tier available)
-2. Create a new site and get your **Site Key** (public) and **Secret Key** (private)
-3. Add the Secret Key as a backend secret called `HCAPTCHA_SECRET_KEY`
+Store `HCAPTCHA_SECRET_KEY` with value `ES_410bd043c5194a8085fcf254eec789f8`
 
-### Step 2: Add hCaptcha Script to HTML
+### Step 2: Update index.html
 
-Update `index.html` to load the hCaptcha script:
+Add hCaptcha script to load the widget:
 
 ```html
 <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 ```
 
-### Step 3: Update Contact Form Component
+### Step 3: Update Contact Form (src/components/Contact.tsx)
 
-Modify `src/components/Contact.tsx` to:
-- Add hCaptcha widget below the message field
-- Store the captcha token when user completes the challenge
-- Send the token with the form submission
-- Reset captcha after form submission
-
-Key changes:
 - Add state for captcha token
-- Add hCaptcha div with site key
-- Include token in the API request body
+- Add hCaptcha widget with Site Key `3e2a7148-16a6-446a-ba36-7bde3f68b622`
+- Include token in form submission
+- Disable submit button until captcha is completed
+- Reset captcha after submission
 
-### Step 4: Update Backend Function
+### Step 4: Update Edge Function (supabase/functions/send-contact-email/index.ts)
 
-Modify `supabase/functions/send-contact-email/index.ts` to:
-
-**a) Restrict CORS to production domain:**
+**CORS Restriction:**
 ```typescript
 const ALLOWED_ORIGINS = [
   "https://daniloespeleta.lovable.app",
   "https://id-preview--c046602f-979f-45c6-9bb3-500af19976dc.lovable.app"
 ];
-
-// Dynamic CORS headers based on request origin
-function getCorsHeaders(origin: string | null) {
-  if (origin && ALLOWED_ORIGINS.includes(origin)) {
-    return {
-      "Access-Control-Allow-Origin": origin,
-      "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-    };
-  }
-  return {
-    "Access-Control-Allow-Origin": ALLOWED_ORIGINS[0],
-    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-  };
-}
 ```
 
-**b) Add hCaptcha verification:**
+**hCaptcha Verification:**
 - Add `captchaToken` to validation schema
-- Verify token with hCaptcha API before processing email
+- Verify token with hCaptcha API using secret key
 - Reject requests with invalid/missing tokens
 
-### Step 5: Add TypeScript Declarations
+### Step 5: Add TypeScript Declarations (src/vite-env.d.ts)
 
-Create type declarations for hCaptcha global objects to avoid TypeScript errors.
+Add hCaptcha global type declarations for TypeScript compatibility.
 
 ---
 
-## Technical Details
-
-### Files to Modify
+## Files to Modify
 
 | File | Changes |
 |------|---------|
-| `index.html` | Add hCaptcha script |
-| `src/components/Contact.tsx` | Add hCaptcha widget, state management, and token submission |
-| `supabase/functions/send-contact-email/index.ts` | CORS restriction + hCaptcha verification |
-| `src/vite-env.d.ts` | Add hCaptcha type declarations |
-
-### New Secret Required
-
-| Secret Name | Purpose |
-|-------------|---------|
-| `HCAPTCHA_SECRET_KEY` | Server-side verification of captcha tokens |
-
-### hCaptcha Site Key
-
-The public site key will be added directly to the code. You'll receive it when you create your hCaptcha account.
+| `index.html` | Add hCaptcha script tag |
+| `src/components/Contact.tsx` | hCaptcha widget + state management |
+| `supabase/functions/send-contact-email/index.ts` | CORS restriction + captcha verification |
+| `src/vite-env.d.ts` | TypeScript declarations for hCaptcha |
 
 ---
 
-## User Experience
+## User Experience After Implementation
 
-- Users will see a small "I am human" checkbox after the message field
-- After clicking it, they may see a visual challenge (depends on risk score)
-- The submit button remains disabled until captcha is completed
-- On form reset, the captcha also resets
+1. User fills out contact form
+2. User clicks "I am human" checkbox (may see visual challenge)
+3. Submit button becomes enabled
+4. Form submits with captcha token
+5. Backend verifies captcha before sending email
+6. On success, form and captcha reset
 
-## Security Benefits
+---
 
-- **hCaptcha**: Stops automated spam bots effectively
-- **CORS Restriction**: Prevents cross-origin attacks and unauthorized API usage
-- **Combined with existing protections**: Rate limiting, honeypot, and input validation remain in place for defense-in-depth
+## Security Layers (Defense in Depth)
+
+| Layer | Protection |
+|-------|------------|
+| Honeypot | Catches basic bots |
+| Rate Limiting | 3 requests/minute per IP |
+| hCaptcha | Visual challenge for sophisticated bots |
+| CORS | Only allows requests from your domains |
+| Input Validation | Prevents injection attacks |
+| HTML Escaping | Prevents XSS in emails |
+
