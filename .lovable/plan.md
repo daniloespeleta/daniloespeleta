@@ -1,62 +1,38 @@
 
-## Unificar Estilo dos Botões Neo-Brutalism
 
-### Objetivo
-Padronizar o comportamento de hover e estados ativos em todos os botões do site para criar uma experiência visual consistente.
+## Corrigir Hover dos Botões de Idioma
 
-### Comportamento Desejado
+### Problema
+Os botões de seleção de idioma na página inicial estão faltando as classes de mudança de cor no hover. Eles movem e perdem a sombra, mas o fundo continua branco.
 
-**Estado Normal:**
-- Borda preta (border-foreground)
-- Fundo branco (bg-background)
-- Texto preto (text-foreground)
-- Sombra brutal (shadow-brutal)
-
-**Estado Hover:**
-- Fundo preto (bg-foreground)
-- Texto branco (text-background)
-- Sem sombra (shadow-none)
-- Deslocamento para baixo/direita (translate-x-[4px] translate-y-[4px])
-- Efeito visual de "botão pressionado"
-
-**Estado Ativo (apenas filtros):**
-- Fundo preto (bg-foreground)
-- Texto branco (text-background)
-- Sem sombra
-- Permanece deslocado
+### Solução
+Adicionar as classes `hover:bg-foreground hover:text-background` aos dois botões e corrigir a borda para `border-foreground`.
 
 ---
 
-## Arquivos a Modificar
+## Detalhes Técnicos
 
-### 1. `src/components/Hero.tsx` (Botão Download Resume)
+### Arquivo a modificar
+`src/pages/Welcome.tsx`
 
-**Problema atual:** O hover move o botão na direção errada (-2px), aumenta a sombra e não tem o efeito de "clique".
+### Mudança nas classes dos botões
 
-**Mudança:** Atualizar as classes do Button para:
+**De:**
 ```
-border-3 border-foreground brutal-shadow bg-background text-foreground font-bold uppercase tracking-wide hover:bg-foreground hover:text-background hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all
+border-3 border-border shadow-brutal hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px]
 ```
 
-### 2. `src/components/Projects.tsx` (Botões de Filtro)
+**Para:**
+```
+border-3 border-foreground shadow-brutal hover:bg-foreground hover:text-background hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px]
+```
 
-**Problema atual:**
-- Estado inativo: hover move na direção errada e aumenta sombra
-- Estado ativo: fundo branco ao invés de preto
+### Classes completas finais
+```
+min-w-[180px] px-8 py-4 bg-background text-foreground font-bold uppercase tracking-wide border-3 border-foreground shadow-brutal hover:bg-foreground hover:text-background hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all duration-150
+```
 
-**Mudanças:**
-- Estado ativo: `bg-foreground text-background` (preto com texto branco)
-- Estado inativo hover: `hover:bg-foreground hover:text-background hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px]`
+### Resultado
+Os botões de idioma terão o mesmo comportamento visual dos demais botões do site:
+- Ao passar o mouse: fundo preto, texto branco, sem sombra, efeito "afundado"
 
----
-
-## Resumo das Mudanças
-
-| Botão | Arquivo | Mudança |
-|-------|---------|---------|
-| Download Resume | Hero.tsx | Inverter direção do translate, remover sombra no hover |
-| Filtro Marketing | Projects.tsx | Estado ativo em preto, corrigir hover |
-| Filtro Analytics | Projects.tsx | Estado ativo em preto, corrigir hover |
-
-### Resultado Esperado
-Todos os botões terão o mesmo comportamento: ao passar o mouse, o fundo fica preto, o texto fica branco, a sombra desaparece e o botão "afunda" - criando uma experiência visual unificada e consistente em todo o site.
