@@ -1,11 +1,9 @@
-import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import DecorativeShapes from "./DecorativeShapes";
+import { Linkedin } from "lucide-react";
 
-const cvFiles = {
-  pt: "/CV_Danilo_Espeleta_PT.pdf",
-  en: "/CV_Danilo_Espeleta_ENG.pdf"
-};
+
+
 
 const Hero = () => {
   const { t, language } = useLanguage();
@@ -44,15 +42,15 @@ const Hero = () => {
               className="animate-fade-in"
               style={{ animationDelay: '0.6s' }}
             >
-              <Button 
-                size="lg" 
-                className="border-3 border-foreground shadow-brutal bg-background text-foreground font-bold uppercase tracking-wide hover:bg-foreground hover:text-background hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
-                asChild
+              <a
+                href="https://www.linkedin.com/in/danilo-espeleta"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-3 border-3 border-foreground shadow-brutal bg-background text-foreground font-bold uppercase tracking-wide hover:bg-foreground hover:text-background hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
               >
-                <a href={cvFiles[language]} download>
-                  {t("hero.downloadResume")}
-                </a>
-              </Button>
+                <Linkedin className="w-5 h-5" />
+                LinkedIn
+              </a>
             </div>
           </div>
 
